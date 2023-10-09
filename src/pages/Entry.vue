@@ -1,7 +1,7 @@
 <template>
     <div id="entry">
-        
-
+        <MsgTable></MsgTable>
+        <InputBox></InputBox>
     </div>
 </template>
 
@@ -20,6 +20,26 @@ export default{
         return {
 
         }
+    },
+    methods:{
+
     }
 }
 </script>
+
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  /* 标准盒子 */
+  box-sizing: border-box;
+}
+
+body {
+  /* 引入字体 */
+  font-family: "Poppins", sans-serif;
+  /* 溢出隐藏 */
+  overflow: hidden;
+}
+
+</style>

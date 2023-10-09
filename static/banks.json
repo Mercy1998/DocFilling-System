@@ -1,0 +1,43 @@
+{
+    "banks":[
+        {"value":"城东支行","label":"b1"},
+        {"value":"南街支行","label":"b2"},
+        {"value":"开发区支行","label":"b3"},
+        {"value":"练市支行","label":"b4"},
+        {"value":"南太湖新区支行","label":"b5"},
+        {"value":"金陵北路支行","label":"b6"},
+        {"value":"南浔营业部","label":"b7"},
+        {"value":"双林支行","label":"b8"},
+        {"value":"昌硕绿色支行","label":"b9"},
+        {"value":"吴兴支行","label":"b10"},
+        {"value":"城中支行","label":"b11"},
+        {"value":"德清营业部","label":"b12"},
+        {"value":"城东支行","label":"b13"},
+        {"value":"南街支行","label":"b14"},
+        {"value":"开发区支行","label":"b15"},
+        {"value":"练市支行","label":"b16"},
+        {"value":"南太湖新区支行","label":"b17"},
+        {"value":"金陵北路支行","label":"b18"},
+        {"value":"南浔营业部","label":"b19"},
+        {"value":"双林支行","label":"b20"},
+
+        {"value":"市行营业部","label":"b21"},
+        {"value":"安吉营业部","label":"b22"},
+        {"value":"凤凰路支行","label":"b23"},
+        {"value":"爱山支行","label":"b24"},
+
+        {"value":"长兴营业部","label":"b25"},
+        {"value":"绿城广场支行","label":"b26"},
+        {"value":"长兴开发区支行","label":"b27"},
+        {"value":"织里支行","label":"b28"},
+
+        {"value":"东部新城支行","label":"b29"},
+        {"value":"乾元支行","label":"b30"},
+        {"value":"新市支行","label":"b31"},
+        {"value":"人瑞路支行","label":"b32"},
+
+        {"value":"龙之梦支行","label":"b33"}
+    ]
+   
+}
+      

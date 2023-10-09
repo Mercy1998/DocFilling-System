@@ -1,5 +1,7 @@
 <template>
+    
     <div id="login">
+        <h3>登陆页面</h3>
         <LoginBox>
         </LoginBox>
         <img>
@@ -20,3 +22,21 @@ export default({
     }
 })
 </script>
+
+<style>
+#login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 300px;
+    height: 400px;
+    margin: -280px 0 0 -190px;
+    padding: 40px;
+    border-radius: 22px;
+    background: hsl(204, 20%, 95%);
+    box-shadow: #78a1bb 0px 0px 15px;
+    opacity: 0.7;
+  }
+  
+
+</style>

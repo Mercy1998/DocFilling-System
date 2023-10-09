@@ -1,6 +1,6 @@
 <!-- 登录框 -->
 <template>
-    <div class="container_form container--signin">
+    <div class="ms_login">
         <el-form :model="loginMsg" :rules="rules" ref="loginMsg" class="form">
             <el-form-item prop="name">
                 <el-input type="text" placeholder="Username" class="name" v-model="loginMsg.name"/>
@@ -156,3 +156,7 @@ export default({
 
 })
 </script>
+
+<style>
+
+</style>
