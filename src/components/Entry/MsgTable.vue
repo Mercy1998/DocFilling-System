@@ -1,7 +1,8 @@
 <template>
-    <el-table
+  <div id="msgTable">
+    <el-table id="table"
       :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
-      style="width: 100%">
+      style="width: 100%; height:300px" border >
       <!-- 表格列表 -->
       <el-table-column label="机构名称" prop="org"></el-table-column>
       <el-table-column label="客户号" prop="cusNum"></el-table-column>
@@ -31,23 +32,44 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-button type="submit" @click="$emit('addRow')">新增</el-button>
+    <el-button @click="download()">导出数据</el-button>
+  </div>
   </template>
   
   <script>
+    import { exportToExcel } from 'D:/phpstudy_pro/WWW/VuePros/mydemo/static/utils/Export2Excel.js'
+
     export default {
+      name:"msg-table",
+      props:{
+        tableData:{
+          type:Array,
+          default:()=>[]
+        }
+      },
+      emits:[
+        'addRow'
+    ],
       data() {
         return {
-          tableData: [],
+
           search: ''
         }
       },
       methods: {
+        // 编辑/删除
         handleEdit(index, row) {
           console.log(index, row);
         },
         handleDelete(index, row) {
+          this.tableData.splice(index,1);
           console.log(index, row);
-        }
+        },
+        download() {
+      // exportToExcel(表格id选择器, 导出文件名称);
+          exportToExcel('#table', '计分');
+        },
       },
     }
   </script>

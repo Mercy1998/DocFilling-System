@@ -6,7 +6,7 @@
                 <el-input type="text" placeholder="Username" class="name" v-model="loginMsg.name"/>
             </el-form-item><br />
             <el-form-item prop="pwd">
-                <el-input type="password" placeholder="Password" class="pwd" v-model="loginMsg.pwd" @keydown.enter="sendLoginMsg"/>
+                <el-input type="password" placeholder="Password" class="pwd" v-model="loginMsg.pwd" @keydown.enter="submitForm('loginMsg')"/>
             </el-form-item><br />
             <el-form-item>
                 <el-button type="primary" @click="submitForm('loginMsg')">登陆</el-button>
