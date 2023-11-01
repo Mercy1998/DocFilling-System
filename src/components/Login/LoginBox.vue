@@ -1,12 +1,12 @@
 <!-- 登录框 -->
 <template>
-    <div class="ms_login">
+    <div class="ms_login" @keydown.enter="submitForm('loginMsg')">
         <el-form :model="loginMsg" :rules="rules" ref="loginMsg" class="form">
             <el-form-item prop="name">
                 <el-input type="text" placeholder="Username" class="name" v-model="loginMsg.name"/>
             </el-form-item><br />
             <el-form-item prop="pwd">
-                <el-input type="password" placeholder="Password" class="pwd" v-model="loginMsg.pwd" @keydown.enter="submitForm('loginMsg')"/>
+                <el-input type="password" placeholder="Password" class="pwd" v-model="loginMsg.pwd"/>
             </el-form-item><br />
             <el-form-item>
                 <el-button type="primary" @click="submitForm('loginMsg')">登陆</el-button>
@@ -24,6 +24,7 @@ export default({
     name:'login-box',
  
     data(){
+        // 验证
         var validateAccount = (rule, value, callback) =>
     {
       if (value === "") {
@@ -32,6 +33,7 @@ export default({
         callback();
       }
     };
+    
     var validatePassword = (rule, value, callback) =>
     {
       if (value === "") {

@@ -16,6 +16,10 @@ export default new Router({
     {
       path:'/entry',
       component:entry
+    },
+    {
+      path:'/',
+      redirect:'/login'
     }
   ]
 })
