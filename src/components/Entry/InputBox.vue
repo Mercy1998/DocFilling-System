@@ -1,7 +1,7 @@
 <!-- 信息录入 -->
 <template>
     <div id="input-box">
-        <el-form :model="inputBox" :inline="true" class="demo-form-inline" ref="inputBox" :rule="rules">
+        <el-form :model="inputBox" :inline="true" class="demo-form-inline" ref="inputBox" :rules="rules">
             <el-form-item label="机构名称" prop="org">
                 <el-select v-model="inputBox.org" placeholder="请选择机构名称">
                     <el-option
@@ -37,8 +37,8 @@
                     </el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="名称" prop="typeNum" v-if="isShowInput">
-                <el-input v-model="inputBox.cusNum" placeholder="输入业务名称"></el-input>
+            <el-form-item label="业务名称" prop="typeNum" v-if="isShowInput">
+                <el-input v-model="inputBox.type2" placeholder="输入业务名称"></el-input>
             </el-form-item> 
             <el-form-item label="金额/户数" prop="amount">
                 <el-input v-model="inputBox.amount" placeholder="输入金额(万)或户数"></el-input>
@@ -57,8 +57,9 @@
             <el-form-item>
                 <!-- <el-button type="primary" @click="onSubmit('inputBox')">提交</el-button>
                 <el-button @click="onReset('inputBox')">重置</el-button> -->
-                <el-button type="primary" @click="onSubmit">提交</el-button>
+                <el-button type="primary" @click="onSubmit()">提交</el-button>
                 <el-button @click="onReset('inputBox')">重置</el-button>
+                <!-- <el-button @click="getScore">计算得分</el-button> -->
             </el-form-item>
         </el-form>
 
@@ -75,8 +76,58 @@ export default{
     name:'input-box',
 
     data() {
+        // 验证
+        var validateOrg = (rule, value, callback) =>
+        {
+            if (value === "") {
+                return callback(new Error("请选择机构"));
+            } else {
+                callback();
+            }
+        };
+        var validateCusNum = (rule, value, callback) =>
+        {
+            if (value === "") {
+                return callback(new Error("请输入客户号"));
+            } else {
+                callback();
+            }
+        };
+        var validateType1 = (rule, value, callback) =>
+        {
+            if (value === "") {
+                return callback(new Error("请选择业务种类"));
+            } else {
+                callback();
+            }
+        };
+        var validateAmount = (rule, value, callback) =>
+        {
+            if (value === "") {
+                return callback(new Error("请输入金额或户数"));
+            } else {
+                callback();
+            }
+        };
+        var validateStaff = (rule, value, callback) =>
+        {
+            if (value === "") {
+                return callback(new Error("请输入营销人员姓名"));
+            } else {
+                callback();
+            }
+        };
+        var validateBuyTime = (rule, value, callback) =>
+        {
+            if (value === "") {
+                return callback(new Error("请选择购买时间"));
+            } else {
+                callback();
+            }
+        };
+
+        //数据
         return{
-            rules:[],
             inputBox:{
                 buyTime:'',
                 cusNum:'',
@@ -89,24 +140,49 @@ export default{
                 types:[
                     {"value":"投资理财中高端客户数","label":"t1","count":1},
                     {"value":"临界客户晋升","label":"t2","count":1},
-                    {"value":"积存金","label":"t3","count":0.03},
+                    {"value":"积存金","label":"t3","count":0.02},
                     {"value":"同业存单","label":"t4","count":0.003},
-                    {"value":"甄选系列理财","label":"t5","count":0.003},
-                    {"value":"对私保险-期交","label":"t6"},
-                    {"value":"熊猫金币","label":"t7"},
+                    {"value":"甄选1号基金","label":"t5","count":1},
+                    {"value":"对私保险-期交","label":"t6","count":1},
+                    {"value":"熊猫金币","label":"t7","count":1},
                     {"value":"其他产品","label":"t8","count":0},
                 ],
                 // 二级分类列表
                 allTypes:{
+                    "甄选1号基金":[
+                    {"value":"华夏安泰对冲（008856）","label":"z1","count":0.015},
+                    {"value":"博时上证科创100","label":"z2","count":0.008},
+                    ],
                     "对私保险-期交":[
-                    {"value":"投资理财中高端客户数","label":"a1"},
-                    {"value":"客户晋升","label":"a2"},
-                    {"value":"积存金(g)","label":"a3"},
+                    {"value":"中银尊享人生二号终身寿险3年","label":"d1","count":0.072},
+                    {"value":"中银尊享人生二号终身寿险5年","label":"d2","count":0.108},
+                    {"value":"中银尊享人生二号终身寿险10年","label":"d3","count":0.18},
+                    {"value":"中银尊享人生二号终身寿险15年","label":"d4","count":0.18},
+                    {"value":"中银尊享人生二号终身寿险20年","label":"d5","count":0.18},
+                    {"value":"鑫悦金典终身寿险（荣耀版）3年","label":"d6","count":0.09},
+                    {"value":"鑫悦金典终身寿险（荣耀版）5年","label":"d7","count":0.14},
+                    {"value":"鑫悦金典终身寿险（荣耀版）6年","label":"d8","count":0.14},
+                    {"value":"鑫悦金典终身寿险（荣耀版）10年","label":"d9","count":0.18},
+                    {"value":"财富一生终身护理保险（D款）3年","label":"d10","count":0.09},
+                    {"value":"财富一生终身护理保险（D款）5年","label":"d11","count":0.14},
+                    {"value":"财富一生终身护理保险（D款）10年","label":"d12","count":0.18},
+                    {"value":"财富一生终身护理保险（D款）15年","label":"d13","count":0.18},
+                    {"value":"财富一生终身护理保险（D款）20年","label":"d14","count":0.18},
+                    {"value":"臻鑫传家终身寿3年","label":"d15","count":0.081},
+                    {"value":"臻鑫传家终身寿5年","label":"d16","count":0.126},
+                    {"value":"臻鑫传家终身寿10年","label":"d17","count":0.162},
+                    {"value":"永享福终身寿3年","label":"d18","count":0.09},
+                    {"value":"永享福终身寿5年","label":"d19","count":0.14},
+                    {"value":"永享福终身寿6年","label":"d20","count":0.14},
+                    {"value":"永享福终身寿10年","label":"d21","count":0.18},
                     ],
                     "熊猫金币":[
-                    {"value":"中银中短债(万)","label":"a4"},
-                    {"value":"新发和二发基金","label":"a5"},
-                    {"value":"对私保险-折期交(万)","label":"a6"}
+                    {"value":"满分评级版","label":"x1","count":0.08},
+                    {"value":"首发认证版","label":"x2","count":0.036},
+                    {"value":"普通认证封装","label":"x3","count":0.03},
+                    {"value":"普通套装（未封装）","label":"x4","count":0.025},
+                    {"value":"30科金币和智能卡*3枚","label":"x5","count":0.04},
+                    {"value":"3克金*10枚","label":"x6","count":0.06}
                     ]
                 },
                 type2s:[],
@@ -145,17 +221,48 @@ export default{
                     {"value":"人瑞路支行","label":"b32"},
                     {"value":"龙之梦支行","label":"b33"}
                 ],
-                isShowSelect:false,
-                isShowInput:false
+                score:''
             },
-            
-        }
-    },
-    rules:{
-        cusNum:[
-            {required:true,message:'请输入机构名称',trigger:'blur'}
-        ]
+            //控制业务分类
+            isShowSelect:false,
+            isShowInput:false,
+            //验证规则
+            rules:{
+                org:[
+                    {
+                        validator: validateOrg,
+                        trigger: "blur",
+                    },
+                ],
+                cusNum:[
+                    {
+                        validator: validateCusNum,
+                        trigger: "blur",
+                    }
+                ],
+                buyTime:[ {
+                        validator: validateBuyTime,
+                        trigger: "blur",
+                    }
+                ],
+                staff:[ {
+                        validator: validateStaff,
+                        trigger: "blur",
+                    }
+                ],
+                amount:[ {
+                        validator: validateAmount,
+                        trigger: "blur",
+                    }
+                ],
+                type1:[ {
+                        validator: validateType1,
+                        trigger: "blur",
+                    }
+                ],    //大类
+            }
 
+        }
     },
     // mounted(){
     //     let today = new date()
@@ -165,25 +272,15 @@ export default{
     //     this.inputBox.writeTime = year + "-" + month + "-" + day;
     // },
     methods: {
-        // getBanks(){
-        //     axios.get('static/banks.json').then(response =>{
-        //         console.log(response.data);
-        //         let datas = response.data;
-        //         console.log(datas)
-        //         this.orgs =datas.data;
-        //         console.log(this.orgs)
-        //     },response => {
-        //         console.log("error")
-        //     });
-        // },
+        // 根据大类改变小类
         change(){
             console.log("clicked")
             this.inputBox.type2 = ""
-
             console.log(this.inputBox.type1)
             for(const k in this.inputBox.types){
-                if(this.inputBox.type1 === "对私保险-期交" || this.inputBox.type1 === "熊猫金币"){
+                if(this.inputBox.type1 === "对私保险-期交" || this.inputBox.type1 === "熊猫金币"|| this.inputBox.type1 === "甄选1号基金"){
                     this.isShowSelect = true
+                    this.isShowInput = false
                     if(this.inputBox.type1 === this.inputBox.types[k].value){
                         this.inputBox.type2s = this.inputBox.allTypes[this.inputBox.type1]
                         console.log(this.inputBox.type2s)
@@ -191,20 +288,59 @@ export default{
                     }
                 }else if(this.inputBox.type1 === "其他产品" ){
                     this.isShowInput = true
+                    this.isShowSelect = false
 
                 }else{
                     this.isShowSelect = false
                     this.isShowInput = false
                 }
-                // 核心代码
-                    
+                // 核心代码  
             }
 
         },
+        //得分计算
+        // getScore() {
+            
+        // },
         onSubmit(){
+            //得分计算
+            let score = 1
+            let flag = 0
+            for(const k in this.inputBox.types){
+                if(this.inputBox.type1 === this.inputBox.types[k].value){
+                    if(this.inputBox.type1 === "对私保险-期交" || this.inputBox.type1 === "熊猫金币"|| this.inputBox.type1 === "甄选1号基金"){
+                        this.inputBox.type2s = this.inputBox.allTypes[this.inputBox.type1]
+                        for(const i in this.inputBox.type2s){
+                            if(this.inputBox.type2 === this.inputBox.type2s[i].value){
+                                flag = 1
+                                console.log(this.inputBox.type2s[i])
+                                this.inputBox.score = this.inputBox.amount * this.inputBox.type2s[i].count
+                                console.log(score)
+                                break;
+                     }   
+                        }
+                        if(flag === 1)
+                            break;
+                    }  
+                    else{
+                        console.log(this.inputBox.types[k])
+                        this.inputBox.score = this.inputBox.amount * this.inputBox.types[k].count
+                        console.log(score)
+                        break;
+                    }
+                      
+                    }
+            }
+            // for(item in this.inputBox)
+            //传值
             this.$emit('getFormData',this.inputBox);
+            //清空
             this.$refs['inputBox'].resetFields();
-            console.log(this.inputBox.writeTime);
+            this.inputBox.score = ""
+            this.isShowInput = false
+            this.isShowSelect = false
+  
+            // console.log(this.inputBox.writeTime);
                 },
         onReset(formName) {
             this.$refs[formName].resetFields();

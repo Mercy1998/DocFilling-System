@@ -27,28 +27,46 @@ export default{
         onSubmit(data){
             console.log(data.buyTime);
             // 时间处理
-            let date = data.buyTime;
+            let date = new Date(data.buyTime);
             let year = date.getFullYear();
             let month = date.getMonth()+1;
             let day = date.getDate();
 
-            month = (month>9)?month:("0"+month);
-            day = (day<10)?("0"+day):day;
+            month = (month>9) ? month : ("0" + month);
+            day = (day < 10) ? ("0" + day) : day;
 
-            date = year+"-"+month+"-"+day;
+            date = year + "-" + month + "-" + day;
 
             console.log(date)
             // 业务种类
-            let types  = data.type1+"-"+data.type2;
-            // 中收计算
-            let count = 1;
-            switch (types){
-                case "投资理财中高端客户数":
-                    count = count*data.amount*0.03;
-                    break;
-                
+            var types = ""
+            if(data.type2 === "")
+            {
+               types = data.type1
+            }else{
+               types  = data.type1+"-"+data.type2;
             }
-
+            // 中收计算
+            // let count = 
+            if(!data.org){
+                alert("机构名不能为空！")
+                return;
+            }else if(!data.cusNum){
+                alert("客户名不能为空！")
+                return;
+            }else if(!types){
+                alert("客户名不能为空！")
+                return;
+            }else if(!date){
+                alert("时间不能为空！")
+                return;
+            }else if(!data.amount){
+                alert("金额或户数不能为空！")
+                return;
+            }else if(!data.staff){
+                alert("营销人员姓名不能为空！")
+                return;
+            }
             let newRow = {
                 org:data.org,
                 cusNum:data.cusNum,
@@ -56,8 +74,9 @@ export default{
                 buyTime:date,
                 amount:data.amount,
                 staff:data.staff,
-                score:count
+                score:data.score
             };
+           
             console.log(this,newRow)
             this.tableDatas.push(newRow)
             

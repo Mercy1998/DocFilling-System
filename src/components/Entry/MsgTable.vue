@@ -1,8 +1,8 @@
 <template>
-  <div id="msgTable" style="padding: 0 auto;">
+  <div id="msgTable">
     <el-table id="table"
       :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
-      style="width: 100%; height: 250px; margin: 0 auto;">
+      style="width: 100%; margin: 0 auto;"  height="250">
       <!-- 表格列表 -->
       <el-table-column label="机构名称" prop="org"></el-table-column>
       <el-table-column label="客户号" prop="cusNum"></el-table-column>
