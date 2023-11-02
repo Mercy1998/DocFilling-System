@@ -83,18 +83,20 @@ export default{
                 staff:'',
                 amount:'',
                 org:'',
-                type1:'',
-                type2:'',
+                type1:'',    //大类
+                type2:'',    //小类
+                // 大类列表
                 types:[
-                    {"value":"投资理财中高端客户数","label":"t1"},
-                    {"value":"临界客户晋升","label":"t2"},
-                    {"value":"积存金","label":"t3"},
-                    {"value":"同业存单","label":"t4"},
-                    {"value":"甄选系列理财","label":"t5"},
+                    {"value":"投资理财中高端客户数","label":"t1","count":1},
+                    {"value":"临界客户晋升","label":"t2","count":1},
+                    {"value":"积存金","label":"t3","count":0.03},
+                    {"value":"同业存单","label":"t4","count":0.003},
+                    {"value":"甄选系列理财","label":"t5","count":0.003},
                     {"value":"对私保险-期交","label":"t6"},
                     {"value":"熊猫金币","label":"t7"},
-                    {"value":"其他产品","label":"t8"},
+                    {"value":"其他产品","label":"t8","count":0},
                 ],
+                // 二级分类列表
                 allTypes:{
                     "对私保险-期交":[
                     {"value":"投资理财中高端客户数","label":"a1"},
