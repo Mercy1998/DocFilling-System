@@ -10,6 +10,7 @@
 <script>
 import MsgTable from '../components/Entry/MsgTable.vue';
 import InputBox from '../components/Entry/InputBox.vue';
+import axios from 'axios';
 
 
 export default{
@@ -67,6 +68,7 @@ export default{
                 alert("营销人员姓名不能为空！")
                 return;
             }
+            // 表格新数据
             let newRow = {
                 org:data.org,
                 cusNum:data.cusNum,
@@ -76,8 +78,29 @@ export default{
                 staff:data.staff,
                 score:data.score
             };
+            axios.post("http://localhost:3000/api/user/entry",{
+                params:{
+                    org:data.org,
+                    cusNum:data.cusNum,
+                    type:types,
+                    buyTime:date,
+                    amount:data.amount,
+                    staff:data.staff,
+                    score:data.score
+                }
+            }
+                    ).then(function(res){
+                        console.log("entry:"+res)
+                        if(res.data.status == 200){
+                            console.log(res.data.msg)
+                        }
+                    }).catch(function(err){
+                        console.log(err)
+                    })
+
+            
            
-            console.log(this,newRow)
+            console.log(newRow)
             this.tableDatas.push(newRow)
             
         }

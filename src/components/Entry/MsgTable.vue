@@ -12,8 +12,8 @@
       <el-table-column label="购买时间" prop="buyTime"></el-table-column>
       <el-table-column label="中收" prop="score"></el-table-column>
       <!-- 搜索框 -->  
-      <el-table-column
-        align="right">
+      <!-- <el-table-column
+        align="right"> -->
         <!-- <template slot="header" slot-scope="scope">
           <el-input
             v-model="search"
@@ -21,23 +21,24 @@
             placeholder="输入关键字搜索"/>
         </template> -->
         <!-- 操作按钮 -->
-       <template slot-scope="scope">
+       <!-- <template slot-scope="scope"> -->
           <!-- <el-button
             size="mini"
             @click="handleEdit(scope.$index, scope.row)">Edit</el-button> -->
-          <el-button
+          <!-- <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
-        </template>
-      </el-table-column>
+            @click="handleDelete(scope.$index, scope.row)">Delete</el-button> -->
+        <!-- </template> -->
+      <!-- </el-table-column> -->
     </el-table>
     <el-button type="primary" @click="download()">导出数据</el-button>
-    <el-button @click="save()">保存数据</el-button>
+    <el-button @click="downloadAll()">所有数据</el-button>
   </div>
   </template>
   
   <script>
+    import axios from 'axios';
     import { exportToExcel } from 'D:/phpstudy_pro/WWW/VuePros/mydemo/static/utils/Export2Excel.js'
 
     export default {
@@ -66,9 +67,32 @@
       // exportToExcel(表格id选择器, 导出文件名称);
           exportToExcel('#table', '计分');
         },
-        save(){
-          
+        downloadAll(){
+          axios.get('http://localhost:3000/api/user/MsgTable',{
+          }).then(function(res){
+            alert("下载成功！")
+            console.log(res)
+          }).catch(function(err){
+            console.log(err)
+          })
         }
       },
     }
   </script>
+
+  <style>
+.el-table thead {
+  color: #303133;
+  text-align: center;
+}
+.el-table .el-table__cell {
+  text-align: center;
+}
+.el-table .el-table__cell {
+  padding:10px 0;
+}
+
+.el-table_1_column_1 .el-table__cell{
+  height: 20px;
+}
+</style>

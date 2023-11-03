@@ -60,7 +60,6 @@
                 , URL = real_URL
                 , btoa = view.btoa
                 , atob = view.atob
-   
                 , ArrayBuffer = view.ArrayBuffer
                 , Uint8Array = view.Uint8Array
                 ;

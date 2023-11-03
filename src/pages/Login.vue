@@ -33,9 +33,11 @@ export default({
     padding: 40px;
     border-radius: 22px;
     background: hsl(204, 20%, 95%);
-    box-shadow: #78a1bb 0px 0px 15px;
+    box-shadow: #619bbe 0px 0px 15px;
     opacity: 0.7;
   }
-  
+  h3 {
+    margin-bottom: 20px;
+  }
 
 </style>

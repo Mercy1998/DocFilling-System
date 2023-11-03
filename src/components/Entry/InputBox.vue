@@ -57,7 +57,7 @@
             <el-form-item>
                 <!-- <el-button type="primary" @click="onSubmit('inputBox')">提交</el-button>
                 <el-button @click="onReset('inputBox')">重置</el-button> -->
-                <el-button type="primary" @click="onSubmit()">提交</el-button>
+                <el-button type="primary" @click="onSubmit()">添加</el-button>
                 <el-button @click="onReset('inputBox')">重置</el-button>
                 <!-- <el-button @click="getScore">计算得分</el-button> -->
             </el-form-item>
@@ -289,7 +289,6 @@ export default{
                 }else if(this.inputBox.type1 === "其他产品" ){
                     this.isShowInput = true
                     this.isShowSelect = false
-
                 }else{
                     this.isShowSelect = false
                     this.isShowInput = false
@@ -314,7 +313,7 @@ export default{
                             if(this.inputBox.type2 === this.inputBox.type2s[i].value){
                                 flag = 1
                                 console.log(this.inputBox.type2s[i])
-                                this.inputBox.score = this.inputBox.amount * this.inputBox.type2s[i].count
+                                this.inputBox.score = (this.inputBox.amount*100) * (this.inputBox.type2s[i].count*10000)/1000000
                                 console.log(score)
                                 break;
                      }   
@@ -324,7 +323,7 @@ export default{
                     }  
                     else{
                         console.log(this.inputBox.types[k])
-                        this.inputBox.score = this.inputBox.amount * this.inputBox.types[k].count
+                        this.inputBox.score = (this.inputBox.amount*100) *( this.inputBox.types[k].count*10000)/1000000
                         console.log(score)
                         break;
                     }
@@ -349,3 +348,14 @@ export default{
     }
 }
 </script>
+
+<style>
+.el-form-item__label{
+    color: #000;
+}
+
+.el-input__inner {
+    border:1px solid #606266;
+    color: #303133;
+}
+</style>
