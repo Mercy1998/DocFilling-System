@@ -78,8 +78,12 @@ router.get("/MsgTable",(req,res)=>{
         '购买时间',
         '中收',
     ])
+    const os = require('os')
+    const homedir = os.homedir()
+
     conn.query(sqlStr,(err,result)=>{
         if(result){
+            console.log(homedir)
             for(var i = 0;i<result.length;i++){
                 var arr = []
                 var value = result[i]
@@ -107,7 +111,7 @@ router.get("/MsgTable",(req,res)=>{
 
         let today= year + "-" + month + "-" + day;
       
-        fs.writeFileSync('C:/Users/Huz_Dq01/Desktop/客户经理计分'+today+'.xlsx',buffer,{'flag':'w'})
+        fs.writeFileSync(homedir+'/Desktop/客户经理计分'+today+'.xlsx',buffer,{'flag':'w'})
         res.send(result)
     })
 

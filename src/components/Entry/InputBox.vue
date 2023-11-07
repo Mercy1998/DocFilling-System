@@ -344,6 +344,9 @@ export default{
         onReset(formName) {
             this.$refs[formName].resetFields();
             console.log('clear');
+            this.inputBox.score = ""
+            this.isShowInput = false
+            this.isShowSelect = false
         }
     }
 }
@@ -353,9 +356,16 @@ export default{
 .el-form-item__label{
     color: #000;
 }
+.el-input__placeholder {
+    color: #606266;
 
+}
 .el-input__inner {
-    border:1px solid #606266;
-    color: #303133;
+    border:1px solid #606266 ;
+    color: #303133 ;
+}
+
+.el-select-dropdown__item {
+    color:#232427;
 }
 </style>
