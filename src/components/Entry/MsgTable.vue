@@ -11,7 +11,7 @@
       <el-table-column label="营销人员姓名" prop="staff"></el-table-column>
       <el-table-column label="购买时间" prop="buyTime"></el-table-column>
       <el-table-column label="中收" prop="score"></el-table-column>
-      <!-- 搜索框 -->  
+      <!-- 导出数据 -->  
       <el-table-column
         align="right"> 
         <template slot="header" slot-scope="scope">
@@ -86,6 +86,7 @@
 .el-table .el-table__cell {
   text-align: center;
   padding:10px 0;
+  font-size: 14px;
 }
 
 

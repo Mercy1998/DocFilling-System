@@ -313,7 +313,7 @@ export default{
                             if(this.inputBox.type2 === this.inputBox.type2s[i].value){
                                 flag = 1
                                 console.log(this.inputBox.type2s[i])
-                                this.inputBox.score = (this.inputBox.amount*100) * (this.inputBox.type2s[i].count*10000)/1000000
+                                this.inputBox.score = (this.inputBox.amount*10000) * (this.inputBox.type2s[i].count*1000000)/10000000000
                                 console.log(score)
                                 break;
                      }   
@@ -323,7 +323,7 @@ export default{
                     }  
                     else{
                         console.log(this.inputBox.types[k])
-                        this.inputBox.score = (this.inputBox.amount*100) *( this.inputBox.types[k].count*10000)/1000000
+                        this.inputBox.score = (this.inputBox.amount*10000) *( this.inputBox.types[k].count*1000000)/10000000000
                         console.log(score)
                         break;
                     }

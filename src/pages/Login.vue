@@ -1,7 +1,7 @@
 <template>
     
     <div id="login">
-        <h3>登陆页面</h3>
+        <h3>登陆</h3>
         <LoginBox>
         </LoginBox>
         <img>
