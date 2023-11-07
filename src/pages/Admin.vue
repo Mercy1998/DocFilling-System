@@ -1,27 +1,26 @@
 <template>
-    <div id="entry">
-        <MsgTable  :tableData="tableDatas"></MsgTable>
-
+    <div id="admin">
+        <AdminMsg  :tableData="tableDatas"></AdminMsg>
         <div class="blank" style="height:20px"></div>
-        <InputBox @getFormData="onSubmit"></InputBox>
+        <AdminInput @getFormData="onSubmit" @getSearchData="search"></AdminInput>
     </div>
 </template>
 
 <script>
-import MsgTable from '../components/Entry/MsgTable.vue';
-import InputBox from '../components/Entry/InputBox.vue';
+import AdminInput from '../components/Admin/AdminInput.vue';
+import AdminMsg from '../components/Admin/AdminMsg.vue';
 import axios from 'axios';
 
 
 export default{
-    name:"entry",
+    name:"admin",
     components:{
-        MsgTable,
-        InputBox
+        AdminInput,
+        AdminMsg
     },
     data(){
         return {
-            tableDatas:[]
+            tableDatas:[],
     }
     },
     methods:{
@@ -103,6 +102,46 @@ export default{
             console.log(newRow)
             this.tableDatas.push(newRow)
             
+        },
+        search(data){
+            this.tableDatas = []
+            let date = new Date(data.buyTime);
+            let year = date.getFullYear();
+            let month = date.getMonth()+1;
+            let day = date.getDate();
+
+            month = (month>9) ? month : ("0" + month);
+            day = (day < 10) ? ("0" + day) : day;
+
+            date = year + "/" + month + "/" + day;
+
+            console.log(date)
+            // 业务种类
+            var types = ""
+            if(data.type2 === "")
+            {
+               types = data.type1
+            }else{
+               types  = data.type1+"-"+data.type2;
+            }
+
+
+            axios.post("http://localhost:3000/api/user/admin",{
+                params:{
+                    org:data.org,
+                    cusNum:data.cusNum,
+                    type:types,
+                    buyTime:date,
+                    amount:data.amount,
+                    staff:data.staff,
+                }
+            }
+                    ).then(function(res){
+                        console.log(res.data.data)
+                    }).catch(function(err){
+                        console.log(err)
+                    })
+
         }
     }
 }

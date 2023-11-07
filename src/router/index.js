@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Login from '@/pages/Login'
-import entry from '@/pages/entry'
+import Entry from '@/pages/Entry'
+import Admin from '@/pages/Admin'
 
 Vue.use(Router)
 
@@ -14,8 +15,12 @@ export default new Router({
       component:Login
     },
     {
-      path:'/entry',
-      component:entry
+      path:'/Entry',
+      component:Entry
+    },
+    {
+      path:'/Admin',
+      component:Admin
     },
     {
       path:'/',

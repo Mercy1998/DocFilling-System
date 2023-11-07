@@ -72,6 +72,7 @@ export default({
             {
                 if(valid){
                     sessionStorage.setItem("name",this.loginMsg.name)
+                    let loginName = sessionStorage.getItem('name')
                     axios.get("http://localhost:3000/api/user/login",{
                         params:{
                             name:this.loginMsg.name,
@@ -82,9 +83,16 @@ export default({
                     {
                         console.log(res);
                         if(res.data.state == 1){
-                            this.$router.replace({path:"/entry"});
+                            if(loginName === 'hzuser'){
+                                this.$router.replace({path:"/Entry"});
+                            }else if(loginName === 'admin'){
+                                this.$router.replace({path:"/Admin"});
+                            }
+
+                            
+
                             this.$message({
-                                message:"登陆成功",
+                                message:loginName+"登陆成功",
                                 type:"success"
                             });
                         }else if (res.data.state !== 1){
