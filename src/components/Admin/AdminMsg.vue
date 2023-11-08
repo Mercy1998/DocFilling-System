@@ -12,12 +12,12 @@
       <el-table-column label="购买时间" prop="buyTime"></el-table-column>
       <el-table-column label="中收" prop="score"></el-table-column>
       <!-- 导出数据 -->  
-      <el-table-column
+      <!-- <el-table-column
         align="right"> 
         <template slot="header" slot-scope="scope">
           <el-button type="primary" @click="downloadAll()" id="my-button">导出所有记录</el-button>
         </template>
-        </el-table-column>
+        </el-table-column> -->
         <!-- 操作按钮 -->
        <!-- <template slot-scope="scope"> -->
           <!-- <el-button
@@ -30,7 +30,7 @@
         <!-- </template> -->
       <!-- </el-table-column> -->
     </el-table>
-    <el-button type="primary" @click="download()">导出数据</el-button>
+    <el-button type="primary" @click="download()" v-if="isDownShow" id="my-download-btn">导出数据</el-button>
 
   </div>
   </template>
@@ -45,11 +45,15 @@
         tableData:{
           type:Array,
           default:()=>[]
+        },
+        isDownShow:{
+          type:Boolean,
+          default:false
         }
       },
       data() {
         return {
-          search: ''
+          search: '',
         }
       },
       methods: {
@@ -57,23 +61,15 @@
         // handleEdit(index, row) {
         //   console.log(index, row);
         // },
-        handleDelete(index, row) {
-          this.tableData.splice(index,1);
-          console.log(index, row);
-        },
+        // handleDelete(index, row) {
+        //   this.tableData.splice(index,1);
+        //   console.log(index, row);
+        // },
         download() {
       // exportToExcel(表格id选择器, 导出文件名称);
-          exportToExcel('#table', '计分');
+          exportToExcel('#table', '中收');
         },
-        downloadAll(){
-          axios.get('http://localhost:3000/api/user/MsgTable',{
-          }).then(function(res){
-            alert("下载成功！")
-            console.log(res)
-          }).catch(function(err){
-            console.log(err)
-          })
-        }
+       
       },
     }
   </script>
@@ -93,9 +89,9 @@
 .el-table_1_column_1 .el-table__cell{
   height: 20px;
 }
-
-#my-button {
-  font-size:12px;
-  padding: 12px 5px;
+#my-download-btn {
+  margin-top: 5px;
+  height: 32px;
+  font-size: 12px;
 }
 </style>

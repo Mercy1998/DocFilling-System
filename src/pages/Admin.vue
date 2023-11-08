@@ -1,8 +1,11 @@
 <template>
     <div id="admin">
-        <AdminMsg  :tableData="tableDatas"></AdminMsg>
-        <div class="blank" style="height:20px"></div>
+
+        <el-button type="primary" @click="downloadAll()" id="my-button">导出所有记录</el-button>
         <AdminInput @getFormData="onSubmit" @getSearchData="search"></AdminInput>
+
+        <AdminMsg  :tableData="tableDatas" :isDownShow=isDownShow v-if="tableDatas"></AdminMsg>
+
     </div>
 </template>
 
@@ -20,11 +23,27 @@ export default{
     },
     data(){
         return {
-            tableDatas:[],
+
+            isDownShow:false,
+            tableDatas:[]
+        
     }
     },
+    created(){
+    },
     methods:{
+        downloadAll(){
+          axios.get('http://localhost:3000/api/user/MsgTable',{
+          }).then(function(res){
+            alert("下载成功！")
+            console.log(res)
+          }).catch(function(err){
+            console.log(err)
+          })
+        },
         onSubmit(data){
+            this.tableDatas = []
+            this.isDownShow = false
             console.log(data.buyTime);
             // 时间处理
             let date = new Date(data.buyTime);
@@ -104,7 +123,9 @@ export default{
             
         },
         search(data){
+            console.log("search:"+data)
             this.tableDatas = []
+            this.isDownShow = true
             let date = new Date(data.buyTime);
             let year = date.getFullYear();
             let month = date.getMonth()+1;
@@ -124,20 +145,34 @@ export default{
             }else{
                types  = data.type1+"-"+data.type2;
             }
-
-
-            axios.post("http://localhost:3000/api/user/admin",{
-                params:{
-                    org:data.org,
-                    cusNum:data.cusNum,
-                    type:types,
-                    buyTime:date,
-                    amount:data.amount,
-                    staff:data.staff,
-                }
+            console.log(data.org+data.cusNum+types)
+            const params = {
+                org:data.org,
+                cusNum:data.cusNum,
+                type:types,
+                buyTime:date,
+                amount:data.amount,
+                staff:data.staff,
             }
-                    ).then(function(res){
-                        console.log(res.data.data)
+            axios.get("http://localhost:3000/api/user/search",{
+                params}
+                ).then((res)=>{
+                        this.tableDatas = []
+                        console.log("data:"+res.data)
+                        for(var i=0;i<res.data.length;i++){
+                            console.log(res.data[i])
+                            var newRow = {
+                                org:res.data[i][0],
+                                cusNum:res.data[i][1],
+                                type:res.data[i][2],
+                                buyTime:res.data[i][5],
+                                amount:res.data[i][3],
+                                staff:res.data[i][4],
+                                score:res.data[i][6]
+                            };
+                            // console.log(newRow)
+                            this.tableDatas.push(newRow)
+                        }
                     }).catch(function(err){
                         console.log(err)
                     })
@@ -163,4 +198,14 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+#admin {
+    margin-top: 10px;
+}
+
+#my-button {
+  width:300px;
+  font-size:14px;
+  padding: 15px 40px;
+  margin-bottom: 15px;
+}
 </style>

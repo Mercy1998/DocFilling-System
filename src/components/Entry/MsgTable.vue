@@ -37,7 +37,6 @@
   
   <script>
     import axios from 'axios';
-    import { exportToExcel } from 'D:/phpstudy_pro/WWW/VuePros/mydemo/static/utils/Export2Excel.js'
 
     export default {
       name:"msg-table",
@@ -49,7 +48,6 @@
       },
       data() {
         return {
-          search: ''
         }
       },
       methods: {
@@ -57,10 +55,10 @@
         // handleEdit(index, row) {
         //   console.log(index, row);
         // },
-        handleDelete(index, row) {
-          this.tableData.splice(index,1);
-          console.log(index, row);
-        },
+        // handleDelete(index, row) {
+        //   this.tableData.splice(index,1);
+        //   console.log(index, row);
+        // },
       //   download() {
       // // exportToExcel(表格id选择器, 导出文件名称);
       //     exportToExcel('#table', '计分');

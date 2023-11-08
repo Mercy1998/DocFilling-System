@@ -1,7 +1,7 @@
 <!-- 信息录入 -->
 <template>
     <div id="admin-input">
-        <el-form :model="inputBox" :inline="true" class="demo-form-inline" ref="inputBox" :rules="rules">
+        <el-form :model="inputBox" :inline="true" class="demo-form-inline" ref="inputBox" >
             <el-form-item label="机构名称" prop="org">
                 <el-select v-model="inputBox.org" placeholder="请选择机构名称">
                     <el-option
@@ -225,40 +225,40 @@ export default{
             isShowSelect:false,
             isShowInput:false,
             //验证规则
-            rules:{
-                org:[
-                    {
-                        validator: validateOrg,
-                        trigger: "blur",
-                    },
-                ],
-                cusNum:[
-                    {
-                        validator: validateCusNum,
-                        trigger: "blur",
-                    }
-                ],
-                buyTime:[ {
-                        validator: validateBuyTime,
-                        trigger: "blur",
-                    }
-                ],
-                staff:[ {
-                        validator: validateStaff,
-                        trigger: "blur",
-                    }
-                ],
-                amount:[ {
-                        validator: validateAmount,
-                        trigger: "blur",
-                    }
-                ],
-                type1:[ {
-                        validator: validateType1,
-                        trigger: "blur",
-                    }
-                ],    //大类
-            }
+            // rules:{
+            //     org:[
+            //         {
+            //             validator: validateOrg,
+            //             trigger: "blur",
+            //         },
+            //     ],
+            //     cusNum:[
+            //         {
+            //             validator: validateCusNum,
+            //             trigger: "blur",
+            //         }
+            //     ],
+            //     buyTime:[ {
+            //             validator: validateBuyTime,
+            //             trigger: "blur",
+            //         }
+            //     ],
+            //     staff:[ {
+            //             validator: validateStaff,
+            //             trigger: "blur",
+            //         }
+            //     ],
+            //     amount:[ {
+            //             validator: validateAmount,
+            //             trigger: "blur",
+            //         }
+            //     ],
+            //     type1:[ {
+            //             validator: validateType1,
+            //             trigger: "blur",
+            //         }
+            //     ],    //大类
+            // }
 
         }
     },

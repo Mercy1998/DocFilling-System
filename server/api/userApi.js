@@ -66,40 +66,6 @@ router.post('/entry',(req,res)=>{
     
 })
 
-router.get("/search",(req,res)=>{
-    let data= []
-    let sqlStr = 'select * from score where org=? or cusNum=? or type=? or amount=? or staff=? or buyTime=?'
-    const params = req.body["params"];
-    console.log(params)
-    const org=params.org
-    const cusNum=params.cusNum
-    const type=params.type
-    const buyTime = params.buyTime
-    const amount=params.amount
-    const staff = params.staff
-
-    conn.query(sqlStr,[org,cusNum,type,amount,staff,buyTime],function(err,results){
-        if(err) {
-            return console.log("添加失败"+err.message)
-        }
-        if(results){
-            for(var i = 0;i<results.length;i++){
-                var arr = []
-                var value = results[i]
-                for(var j in value){
-                    console.log(value[j])
-                    arr.push(value[j]);
-                }
-                data.push(arr);
-                }
-            }
-            console.log(data)
-            res.send(results)
-        }
-    
-    )
-})
-
 router.get("/MsgTable",(req,res)=>{
     let data= []
     let sqlStr = 'select * from score'
@@ -135,6 +101,7 @@ router.get("/MsgTable",(req,res)=>{
                 data:data
             }
         ]);
+
         let date = new Date()
         let year = date.getFullYear();
         let month = date.getMonth()+1;
@@ -143,7 +110,7 @@ router.get("/MsgTable",(req,res)=>{
         month = (month>9) ? month : ("0" + month);
         day = (day < 10) ? ("0" + day) : day;
 
-        let today= year + "/" + month + "/" + day;
+        let today= year + "-" + month + "-" + day;
       
         fs.writeFileSync(homedir+'/Desktop/客户经理计分'+today+'.xlsx',buffer,{'flag':'w'})
         res.send(result)
@@ -151,6 +118,48 @@ router.get("/MsgTable",(req,res)=>{
 
     
 })
+
+router.get("/search",(req,res)=>{
+    let data= []
+    let sqlStr = 'select * from score where org=? or cusNum=? or type LIKE ? or amount=? or staff=? or buyTime=?'
+    const params = req.query;
+    console.log("params"+params)
+    const org=params.org
+    const cusNum=params.cusNum
+    var type = ""
+    if(params.type === "甄选1号基金" || params.type === "对私保险-期交" || params.type === "熊猫金币" || params.type === "其他产品"){
+        type=params.type+"%"
+    }else{
+        type=params.type
+    }
+
+    const buyTime = params.buyTime
+    const amount=params.amount
+    const staff = params.staff
+
+    conn.query(sqlStr,[org,cusNum,type,amount,staff,buyTime],function(err,results){
+        if(err) {
+            return console.log("查询失败"+err.message)
+        }
+        if(results){
+            for(var i = 0;i<results.length;i++){
+                var arr = []
+                var value = results[i]
+                for(var j in value){
+                    console.log(value[j])
+                    arr.push(value[j]);
+                }
+                data.push(arr);
+                }
+            }
+            console.log(data)
+            res.send(data)
+        }
+    
+    )
+})
+
+
 
 // router.get('/delete',(req,res)=>{
 //     let 
