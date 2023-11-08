@@ -139,11 +139,11 @@ export default{
                     {"value":"投资理财中高端客户数","label":"t1","count":1},
                     {"value":"临界客户晋升","label":"t2","count":1},
                     {"value":"积存金","label":"t3","count":0.02},
-                    {"value":"同业存单","label":"t4","count":0.003},
                     {"value":"甄选1号基金","label":"t5","count":1},
-                    {"value":"对私保险-期交","label":"t6","count":1},
-                    {"value":"熊猫金币","label":"t7","count":1},
-                    {"value":"其他产品","label":"t8","count":0},
+                    {"value":"甄选系列理财","label":"t6","count":0.03},
+                    {"value":"对私保险-期交","label":"t7","count":1},
+                    {"value":"熊猫金币","label":"t8","count":1},
+                    {"value":"其他产品","label":"t9","count":0},
                 ],
                 // 二级分类列表
                 allTypes:{
@@ -179,7 +179,7 @@ export default{
                     {"value":"首发认证版","label":"x2","count":0.036},
                     {"value":"普通认证封装","label":"x3","count":0.03},
                     {"value":"普通套装（未封装）","label":"x4","count":0.025},
-                    {"value":"30科金币和智能卡*3枚","label":"x5","count":0.04},
+                    {"value":"30克金币智能卡*3枚","label":"x5","count":0.04},
                     {"value":"3克金*10枚","label":"x6","count":0.06}
                     ]
                 },
