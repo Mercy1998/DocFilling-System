@@ -3,7 +3,7 @@
     <div id="admin-input">
         <el-form :model="inputBox" :inline="true" class="demo-form-inline" ref="inputBox" >
             <el-form-item label="机构名称" prop="org">
-                <el-select v-model="inputBox.org" placeholder="请选择机构名称">
+                <el-select v-model="inputBox.org" placeholder="请选择机构名称" >
                     <el-option
                     v-for="item in inputBox.orgs"
                     :key="item.label"
@@ -72,7 +72,9 @@ import { getDefaultFlags } from 'mysql/lib/ConnectionConfig';
 
 export default{
     name:'admin-input',
-
+    created(){
+        this.getValues()
+    },
     data() {
         // 验证
         var validateOrg = (rule, value, callback) =>
@@ -136,14 +138,6 @@ export default{
                 type2:'',    //小类
                 // 大类列表
                 types:[
-                    {"value":"投资理财中高端客户数","label":"t1","count":1},
-                    {"value":"临界客户晋升","label":"t2","count":1},
-                    {"value":"积存金","label":"t3","count":0.02},
-                    {"value":"甄选1号基金","label":"t5","count":1},
-                    {"value":"甄选系列理财","label":"t6","count":0.03},
-                    {"value":"对私保险-期交","label":"t7","count":1},
-                    {"value":"熊猫金币","label":"t8","count":1},
-                    {"value":"其他产品","label":"t9","count":0},
                 ],
                 // 二级分类列表
                 allTypes:{
@@ -219,7 +213,8 @@ export default{
                     {"value":"人瑞路支行","label":"b32"},
                     {"value":"龙之梦支行","label":"b33"}
                 ],
-                score:''
+                score:'',
+                rowTypes:{}
             },
             //控制业务分类
             isShowSelect:false,
@@ -269,28 +264,53 @@ export default{
     //     var day = today.getDate();//获取日期
     //     this.inputBox.writeTime = year + "-" + month + "-" + day;
     // },
+    created(){
+       this.getValue1s()
+       this.getValue2s()
+
+    },
+   
     methods: {
         // 根据大类改变小类
         change(){
             console.log("clicked")
             this.inputBox.type2 = ""
+            this.inputBox.type2s = []
             console.log(this.inputBox.type1)
             for(const k in this.inputBox.types){
-                if(this.inputBox.type1 === "对私保险-期交" || this.inputBox.type1 === "熊猫金币"|| this.inputBox.type1 === "甄选1号基金"){
-                    this.isShowSelect = true
-                    this.isShowInput = false
-                    if(this.inputBox.type1 === this.inputBox.types[k].value){
-                        this.inputBox.type2s = this.inputBox.allTypes[this.inputBox.type1]
-                        console.log(this.inputBox.type2s)
-                        break;
+                //判断主键是否相同
+                if(this.inputBox.type1 === this.inputBox.types[k].value){
+                    //判断type2s 是否为空
+                    for(const s in this.inputBox.allTypes[this.inputBox.type1]){
+                        if(this.inputBox.allTypes[this.inputBox.type1][s].value !== null){
+                            this.inputBox.type2s.push(this.inputBox.allTypes[this.inputBox.type1][s])
+                        }
                     }
-                }else if(this.inputBox.type1 === "其他产品" ){
-                    this.isShowInput = true
-                    this.isShowSelect = false
-                }else{
-                    this.isShowSelect = false
-                    this.isShowInput = false
+                    console.log(this.inputBox.type2s)
+                    console.log("length:"+this.inputBox.type2s.length)
+                    if(this.inputBox.type2s.length!=0){
+                        this.isShowSelect = true
+                    }else{
+                        this.isShowSelect = false
+                    }
+                
                 }
+
+                // if(this.inputBox.type1 === "对私保险-期交" || this.inputBox.type1 === "熊猫金币"|| this.inputBox.type1 === "甄选1号基金"){
+                //     this.isShowSelect = true
+                //     this.isShowInput = false
+                //     if(this.inputBox.type1 === this.inputBox.types[k].value){
+                //         this.inputBox.type2s = this.inputBox.allTypes[this.inputBox.type1]
+                //         console.log(this.inputBox.type2s)
+                //         break;
+                //     }
+                // }else if(this.inputBox.type1 === "其他产品" ){
+                //     this.isShowInput = true
+                //     this.isShowSelect = false
+                // }else{
+                //     this.isShowSelect = false
+                //     this.isShowInput = false
+                // }
                 // 核心代码  
             }
 
@@ -353,6 +373,55 @@ export default{
             this.inputBox.score = ""
             this.isShowInput = false
             this.isShowSelect = false
+        },
+        getValue1s(){
+            axios.get("http://localhost:3000/api/user/getValue1",{
+
+            }).then((res)=>{
+                this.inputBox.types = []
+                console.log(res.data)
+                var type1s = res.data
+                for(var i = 0;i<type1s.length;i++){
+                    
+                    let newType ={
+                        value:type1s[i][1],
+                        label:type1s[i][0]
+                    }
+                    this.inputBox.types.push(newType)
+                }
+            })
+        },
+        getValue2s(){
+            axios.get("http://localhost:3000/api/user/getValue2",{
+
+            }).then((res)=>{
+                console.log(res.data)
+                this.inputBox.allTypes = {}
+                for(var i = 0;i<this.inputBox.types.length;i++){
+                    let key = this.inputBox.types[i].value
+                    let value = []
+                    // console.log("key:"+key)
+                    for(var j = 0;j<res.data.length;j++){
+                        // console.log(res.data[j][1])
+                        if(res.data[j][1] === key){
+                            let newRow = {
+                                value:res.data[j][2],
+                                label:"s"+res.data[j][0],
+                                count:res.data[j][3]
+                            }
+                            // console.log("newRow:"+newRow.value)
+                            value.push(newRow)
+                        }else{
+                            continue
+                        }
+                    }
+                    // console.log("value:"+value)
+                    this.inputBox.allTypes[key]=value
+                    console.log(this.inputBox.allTypes)
+                }
+                console.log(this.inputBox.allTypes)
+            })
+
         }
     }
 }

@@ -19,6 +19,8 @@ conn.connect((err)=>{
     console.log('连接成功')
 });
 
+
+//登录数据
 router.get('/login',(req,res) => {
     var name = req.query.name;
     var pwd = req.query.pwd;
@@ -40,6 +42,7 @@ router.get('/login',(req,res) => {
 
 });
 
+//录入
 router.post('/entry',(req,res)=>{
     let sqlStr = "insert into score(org,cusNum,type,amount,staff,buytime,score) values (?,?,?,?,?,?,?)";
     const params = req.body["params"];
@@ -66,6 +69,7 @@ router.post('/entry',(req,res)=>{
     
 })
 
+//导出
 router.get("/MsgTable",(req,res)=>{
     let data= []
     let sqlStr = 'select * from score'
@@ -119,6 +123,8 @@ router.get("/MsgTable",(req,res)=>{
     
 })
 
+
+//查询
 router.get("/search",(req,res)=>{
     let data= []
     let sqlStr = 'select * from score where org=? or cusNum=? or type LIKE ? or amount=? or staff=? or buyTime=?'
@@ -159,7 +165,52 @@ router.get("/search",(req,res)=>{
     )
 })
 
+// 动态获取数据库数据
+// value1
+router.get('/getValue1',function(req,res){
+    let type = []
+    let sqlStr = 'select distinct value1 from production'
+    conn.query(sqlStr,function(err,result){
+        if(result){
+           for(var i=0; i<result.length;i++){
+                let arr = []
+                arr.push("t"+i)
+                arr.push(result[i].value1)
+                type.push(arr)
+           }
+           console.log(type)
+        }
+        res.send(type)
+    })
+ 
+    
+})
 
+//value2
+router.get('/getValue2',function(req,res){
+    let types = []
+
+    let sqlStr = "select * from production"
+    conn.query(sqlStr,function(err,result){
+        if(result){
+            for(var i = 0;i<result.length;i++){
+                let arr = []
+                arr.push(result[i].id)
+                arr.push(result[i].value1)
+                arr.push(result[i].value2)
+                arr.push(result[i].count)
+                types.push(arr)
+            }
+           
+        }
+        res.send(types)
+    })
+})
+
+//value2
+// router.get('/getValue2',(req,res){
+
+// })
 
 // router.get('/delete',(req,res)=>{
 //     let 

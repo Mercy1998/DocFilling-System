@@ -17,8 +17,6 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
-
-
 //采用设置所有均可访问的方法解决跨域问题
 app.all("*", function (req, res, next) {
     //设置允许跨域的域名，*代表允许任意域名跨域
