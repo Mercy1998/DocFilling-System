@@ -195,10 +195,18 @@ router.get('/getValue2',function(req,res){
         if(result){
             for(var i = 0;i<result.length;i++){
                 let arr = []
+                let value = ""
                 arr.push(result[i].id)
                 arr.push(result[i].value1)
                 arr.push(result[i].value2)
                 arr.push(result[i].count)
+                if(result[i].value2 === null){
+                    value = result[i].value1
+                }else{
+                    value = result[i].value1 + result[i].value2
+                }
+                arr.push(value)
+                
                 types.push(arr)
             }
            

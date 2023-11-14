@@ -136,48 +136,14 @@ export default{
                 org:'',
                 type1:'',    //大类
                 type2:'',    //小类
+                // 动态获取
                 // 大类列表
-                types:[
-                ],
+                types:[],
                 // 二级分类列表
-                allTypes:{
-                    "甄选1号基金":[
-                    {"value":"华夏安泰对冲（008856）","label":"z1","count":0.015},
-                    {"value":"博时上证科创100","label":"z2","count":0.008},
-                    ],
-                    "对私保险-期交":[
-                    {"value":"中银尊享人生二号终身寿险3年","label":"d1","count":0.072},
-                    {"value":"中银尊享人生二号终身寿险5年","label":"d2","count":0.108},
-                    {"value":"中银尊享人生二号终身寿险10年","label":"d3","count":0.18},
-                    {"value":"中银尊享人生二号终身寿险15年","label":"d4","count":0.18},
-                    {"value":"中银尊享人生二号终身寿险20年","label":"d5","count":0.18},
-                    {"value":"鑫悦金典终身寿险（荣耀版）3年","label":"d6","count":0.09},
-                    {"value":"鑫悦金典终身寿险（荣耀版）5年","label":"d7","count":0.14},
-                    {"value":"鑫悦金典终身寿险（荣耀版）6年","label":"d8","count":0.14},
-                    {"value":"鑫悦金典终身寿险（荣耀版）10年","label":"d9","count":0.18},
-                    {"value":"财富一生终身护理保险（D款）3年","label":"d10","count":0.09},
-                    {"value":"财富一生终身护理保险（D款）5年","label":"d11","count":0.14},
-                    {"value":"财富一生终身护理保险（D款）10年","label":"d12","count":0.18},
-                    {"value":"财富一生终身护理保险（D款）15年","label":"d13","count":0.18},
-                    {"value":"财富一生终身护理保险（D款）20年","label":"d14","count":0.18},
-                    {"value":"臻鑫传家终身寿3年","label":"d15","count":0.081},
-                    {"value":"臻鑫传家终身寿5年","label":"d16","count":0.126},
-                    {"value":"臻鑫传家终身寿10年","label":"d17","count":0.162},
-                    {"value":"永享福终身寿3年","label":"d18","count":0.09},
-                    {"value":"永享福终身寿5年","label":"d19","count":0.14},
-                    {"value":"永享福终身寿6年","label":"d20","count":0.14},
-                    {"value":"永享福终身寿10年","label":"d21","count":0.18},
-                    ],
-                    "熊猫金币":[
-                    {"value":"满分评级版","label":"x1","count":0.08},
-                    {"value":"首发认证版","label":"x2","count":0.036},
-                    {"value":"普通认证封装","label":"x3","count":0.03},
-                    {"value":"普通套装（未封装）","label":"x4","count":0.025},
-                    {"value":"30克金币智能卡*3枚","label":"x5","count":0.04},
-                    {"value":"3克金*10枚","label":"x6","count":0.06}
-                    ]
-                },
+                allTypes:{},
                 type2s:[],
+
+                //
                 orgs:[
                     {"value":"城东支行","label":"b1"},
                     {"value":"南街支行","label":"b2"},
@@ -213,65 +179,25 @@ export default{
                     {"value":"人瑞路支行","label":"b32"},
                     {"value":"龙之梦支行","label":"b33"}
                 ],
+
+                //得分
                 score:'',
                 rowTypes:{}
             },
             //控制业务分类
             isShowSelect:false,
             isShowInput:false,
-            //验证规则
-            // rules:{
-            //     org:[
-            //         {
-            //             validator: validateOrg,
-            //             trigger: "blur",
-            //         },
-            //     ],
-            //     cusNum:[
-            //         {
-            //             validator: validateCusNum,
-            //             trigger: "blur",
-            //         }
-            //     ],
-            //     buyTime:[ {
-            //             validator: validateBuyTime,
-            //             trigger: "blur",
-            //         }
-            //     ],
-            //     staff:[ {
-            //             validator: validateStaff,
-            //             trigger: "blur",
-            //         }
-            //     ],
-            //     amount:[ {
-            //             validator: validateAmount,
-            //             trigger: "blur",
-            //         }
-            //     ],
-            //     type1:[ {
-            //             validator: validateType1,
-            //             trigger: "blur",
-            //         }
-            //     ],    //大类
-            // }
-
+            // 所以条目
+            allArray:[]
         }
     },
-    // mounted(){
-    //     let today = new date()
-    //     var year = today.getFullYear();//获取年份
-    //     var month = today.getMonth() + 1;//获取月份
-    //     var day = today.getDate();//获取日期
-    //     this.inputBox.writeTime = year + "-" + month + "-" + day;
-    // },
+    //加载
     created(){
        this.getValue1s()
        this.getValue2s()
-
     },
-   
     methods: {
-        // 根据大类改变小类
+        // 根据大类改变小类内容
         change(){
             console.log("clicked")
             this.inputBox.type2 = ""
@@ -315,50 +241,26 @@ export default{
             }
 
         },
-        //得分计算
-        // getScore() {
-            
-        // },
         onSubmit(){
+            this.inputBox.score = ""
             //得分计算
-            let score = 1
-            let flag = 0
-            for(const k in this.inputBox.types){
-                if(this.inputBox.type1 === this.inputBox.types[k].value){
-                    if(this.inputBox.type1 === "对私保险-期交" || this.inputBox.type1 === "熊猫金币"|| this.inputBox.type1 === "甄选1号基金"){
-                        this.inputBox.type2s = this.inputBox.allTypes[this.inputBox.type1]
-                        for(const i in this.inputBox.type2s){
-                            if(this.inputBox.type2 === this.inputBox.type2s[i].value){
-                                flag = 1
-                                console.log(this.inputBox.type2s[i])
-                                this.inputBox.score = (this.inputBox.amount*10000) * (this.inputBox.type2s[i].count*1000000)/10000000000
-                                console.log(score)
-                                break;
-                     }   
-                        }
-                        if(flag === 1)
-                            break;
-                    }  
-                    else{
-                        console.log(this.inputBox.types[k])
-                        this.inputBox.score = (this.inputBox.amount*10000) *( this.inputBox.types[k].count*1000000)/10000000000
-                        console.log(score)
-                        break;
-                    }
-                      
-                    }
+            console.log("type1: "+this.inputBox.type1)
+            console.log("type1: "+this.inputBox.type2)
+            let value = this.inputBox.type1+this.inputBox.type2
+            for(var i=0;i<this.allArray.length;i++){
+                if(value === this.allArray[i][4]){
+                    this.inputBox.score = (this.inputBox.amount*10000)*(this.allArray[i][3]*10000)/100000000
+                    break
+                }
             }
-            // for(item in this.inputBox)
-            //传值
+           //传值
             this.$emit('getFormData',this.inputBox);
             //清空
             this.$refs['inputBox'].resetFields();
-            this.inputBox.score = ""
+            console.log(this.inputBox.score)
+
             this.isShowInput = false
-            this.isShowSelect = false
-  
-            // console.log(this.inputBox.writeTime);
-                },
+        },
         // 查询
         search(){
             this.$emit('getSearchData',this.inputBox);
@@ -367,6 +269,7 @@ export default{
             this.isShowInput = false
             this.isShowSelect = false
         },
+        //重置
         onReset(formName) {
             this.$refs[formName].resetFields();
             console.log('clear');
@@ -374,6 +277,7 @@ export default{
             this.isShowInput = false
             this.isShowSelect = false
         },
+        //获取大类
         getValue1s(){
             axios.get("http://localhost:3000/api/user/getValue1",{
 
@@ -381,8 +285,7 @@ export default{
                 this.inputBox.types = []
                 console.log(res.data)
                 var type1s = res.data
-                for(var i = 0;i<type1s.length;i++){
-                    
+                for(var i = 0;i<type1s.length;i++){                    
                     let newType ={
                         value:type1s[i][1],
                         label:type1s[i][0]
@@ -391,37 +294,35 @@ export default{
                 }
             })
         },
+        //获取所有数据
         getValue2s(){
             axios.get("http://localhost:3000/api/user/getValue2",{
-
             }).then((res)=>{
                 console.log(res.data)
                 this.inputBox.allTypes = {}
+                this.allArray = res.data
                 for(var i = 0;i<this.inputBox.types.length;i++){
                     let key = this.inputBox.types[i].value
                     let value = []
-                    // console.log("key:"+key)
                     for(var j = 0;j<res.data.length;j++){
-                        // console.log(res.data[j][1])
                         if(res.data[j][1] === key){
                             let newRow = {
                                 value:res.data[j][2],
                                 label:"s"+res.data[j][0],
                                 count:res.data[j][3]
                             }
-                            // console.log("newRow:"+newRow.value)
                             value.push(newRow)
                         }else{
                             continue
                         }
                     }
-                    // console.log("value:"+value)
+                    //不同的key值要用中括号分开
                     this.inputBox.allTypes[key]=value
                     console.log(this.inputBox.allTypes)
                 }
                 console.log(this.inputBox.allTypes)
+                console.log(this.allArray)
             })
-
         }
     }
 }
