@@ -3,7 +3,7 @@
   <div id="admin-input">
     <el-form :model="inputBox" :inline="true" class="demo-form-inline" ref="inputBox">
       <el-form-item label="机构名称" prop="org">
-        <el-select v-model="inputBox.org" placeholder="请选择机构名称">
+        <el-select v-model="inputBox.org" placeholder="请选择机构名称" size="small">
           <el-option
             v-for="item in inputBox.orgs"
             :key="item.label"
@@ -13,14 +13,15 @@
         </el-select>
       </el-form-item>
       <el-form-item label="客户号" prop="cusNum">
-        <el-input v-model="inputBox.cusNum" placeholder="输入客户号"></el-input>
+        <el-input v-model="inputBox.cusNum" placeholder="输入客户号" size="small"></el-input>
       </el-form-item>
       <el-form-item label="营销人员" prop="staff">
-        <el-input v-model="inputBox.staff" placeholder="输入营销人员姓名"></el-input>
+        <el-input v-model="inputBox.staff" placeholder="输入营销人员姓名" size="small"></el-input>
       </el-form-item>
+      <br>
       <!-- 二级联动 -->
       <el-form-item label="业务种类1" prop="type1">
-        <el-select v-model="inputBox.type1" placeholder="请选择业务种类" @change="change">
+        <el-select v-model="inputBox.type1" placeholder="请选择业务种类" @change="change" size="small">
           <el-option
             v-for="item in inputBox.types"
             :key="item.label"
@@ -30,7 +31,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="业务种类2" prop="type2">
-        <el-select v-model="inputBox.type2" placeholder="请选择业务种类">
+        <el-select v-model="inputBox.type2" placeholder="请选择业务种类" size="small">
           <el-option
             v-for="item in inputBox.type2s"
             :key="item.label"
@@ -39,15 +40,16 @@
           </el-option>
         </el-select>
       </el-form-item>
-<!--      <el-form-item label="业务名称" prop="typeNum" v-if="isShowInput">-->
-<!--        <el-input v-model="inputBox.type2" placeholder="输入业务名称"></el-input>-->
-<!--      </el-form-item>-->
-<!--      <el-form-item label="金额/户数" prop="amount">-->
-<!--        <el-input v-model="inputBox.amount" placeholder="输入金额(万)或户数"></el-input>-->
-<!--      </el-form-item>-->
+      <!--      <el-form-item label="业务名称" prop="typeNum" v-if="isShowInput">-->
+      <!--        <el-input v-model="inputBox.type2" placeholder="输入业务名称"></el-input>-->
+      <!--      </el-form-item>-->
+      <!--      <el-form-item label="金额/户数" prop="amount">-->
+      <!--        <el-input v-model="inputBox.amount" placeholder="输入金额(万)或户数"></el-input>-->
+      <!--      </el-form-item>-->
 
       <el-form-item label="购买日期" prop="buyTime">
-        <el-date-picker v-model="inputBox.buyTime" type="date" placeholder="选择日期"></el-date-picker>
+        <el-date-picker v-model="inputBox.buyTime" type="date" placeholder="选择日期" size="small"
+                        id="my-date-picker"></el-date-picker>
       </el-form-item>
       <br>
       <el-form-item>
@@ -63,8 +65,6 @@
 
   </div>
 </template>
-
-
 <script>
 import axios from 'axios';
 import {getDefaultFlags} from 'mysql/lib/ConnectionConfig';
@@ -170,7 +170,7 @@ export default {
           }
           console.log(this.inputBox.type2s)
           console.log("length:" + this.inputBox.type2s.length)
-          if(this.inputBox.type2s.length !== 0) {
+          if (this.inputBox.type2s.length !== 0) {
             this.isShowSelect = true
           } else {
             this.isShowSelect = false
@@ -211,8 +211,8 @@ export default {
       this.$refs[formName].resetFields();
       console.log('clear');
       this.inputBox.score = ""
-      this.isShowInput = false
-      this.isShowSelect = false
+      // this.isShowInput = false
+      // this.isShowSelect = false
     },
     //获取大类
     getValue1s() {
@@ -259,15 +259,13 @@ export default {
       })
     },
     //获取机构
-    getOrgs(){
-      axios.get("http://localhost:3000/api/user/getOrgs",{
-
-      }).then((res)=>{
+    getOrgs() {
+      axios.get("http://localhost:3000/api/user/getOrgs", {}).then((res) => {
         this.inputBox.orgs = []
-        for(var i=0;i<res.data.length;i++){
+        for (var i = 0; i < res.data.length; i++) {
           let newRow = {
-            value:res.data[i],
-            label:"b"+i
+            value: res.data[i],
+            label: "b" + i
           }
           this.inputBox.orgs.push(newRow)
         }
@@ -289,6 +287,14 @@ export default {
 
 }
 
+.el-input {
+  width: 150px;
+}
+
+#my-date-picker {
+  width: 150px;
+}
+
 .el-input__inner {
   border: 1px solid #606266;
   color: #303133;
@@ -297,5 +303,10 @@ export default {
 
 .el-select-dropdown__item {
   color: #232427;
+}
+
+.el-button {
+  font-size: 12px;
+  padding: 10px 20px;
 }
 </style>

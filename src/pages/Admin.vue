@@ -1,6 +1,6 @@
 <template>
   <div id="admin">
-    <el-container style="height: 500px; border: 1px solid #eee">
+    <el-container style="height: 500px; ">
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <MyMenu></MyMenu>
       </el-aside>
@@ -205,13 +205,13 @@ body {
 }
 
 #admin {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 #my-button {
   width: 300px;
-  font-size: 12px;
-  padding: 15px 40px;
-  margin-bottom: 15px;
+  font-size: 13px;
+  padding: 10px 30px;
+  margin-bottom: 10px;
 }
 </style>

@@ -224,21 +224,58 @@ router.get('/getOrgs', function (req, res) {
 })
 
 // 删除业务
-router.post('/deleteCount',function(req,res){
+router.post('/deleteCount', function (req, res) {
   let sqlStr = "delete from score where type = ?"
   let params = req.body["params"]
   let type = params.value
   console.log(type)
-  conn.query(sqlStr,[type],(err,result)=>{
-    if(err){
-      return console.log("删除失败!"+err.message)
+  conn.query(sqlStr, [type], (err, result) => {
+    if (err) {
+      return console.log("删除失败!" + err.message)
     }
     res.send({
-      message:"删除数据成功"
+      message: "删除数据成功"
     })
   })
 
 })
 
+//获取机构列表
+router.get('/getAllOrgs',function(req,res){
+  let orgs = []
+  let sqlStr = "select * from org"
+  conn.query(sqlStr, function (err, result) {
+    if (result) {
+      for (var i = 0; i < result.length; i++) {
+        let arr =[]
+        arr.push(result[i].id)
+        arr.push(result[i].name)
+        orgs.push(arr)
+      }
+      console.log(orgs)
+      res.send(orgs)
+    }
+  })
+})
+
+//添加机构
+router.post('/addOrg',function(req,res){
+  let sqlStr = "insert into org(name) values (?)"
+  let params = res.body["params"]
+  let name = params.orgName
+  conn.query(sqlStr,[name],(err,result)=>{
+    if(err){
+      return console.log("添加机构失败！",err.message)
+    }
+    res.send({
+      message:"添加成功！"
+    })
+  })
+})
+
+//修改机构
+router.post('/updateOrg',function(req,res){
+
+})
 
 module.exports = router;

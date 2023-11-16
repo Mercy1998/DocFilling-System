@@ -2,7 +2,7 @@
   <div id="admin-msg">
     <el-table id="table"
               :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
-              style="width: 100%; margin: 0 auto;" height="230">
+              style="width: 100%; margin: 0 auto;" height="300">
       <!-- 表格列表 -->
       <el-table-column label="机构名称" prop="org"></el-table-column>
       <el-table-column label="客户号" prop="cusNum"></el-table-column>
@@ -51,7 +51,7 @@ export default {
   },
   data() {
     return {
-      search:''
+      search: ''
     }
   },
   methods: {
@@ -60,17 +60,17 @@ export default {
       console.log(index, row);
     },
     handleDelete(index, row) {
-      this.tableData.splice(index,1);
-      axios.post("http://localhost:3000/api/user/deleteCount",{
+      this.tableData.splice(index, 1);
+      axios.post("http://localhost:3000/api/user/deleteCount", {
         params: {
           value: row.type
         }
-      }).then((res)=>{
-          console.log(res.data.message)
-      }).catch((err)=>{
+      }).then((res) => {
+        console.log(res.data.message)
+      }).catch((err) => {
 
       })
-      console.log("11111:"+row.type)
+      console.log("11111:" + row.type)
       console.log(index, row);
     },
     download() {
@@ -94,14 +94,17 @@ export default {
   font-size: 12px;
 }
 
-
 .el-table_1_column_1 .el-table__cell {
-  height: 20px;
+  height: 18px;
 }
 
 #my-download-btn {
-  margin-top: 5px;
   height: 32px;
   font-size: 12px;
 }
+
+.el-main {
+  padding: 0px 10px;
+}
+
 </style>
