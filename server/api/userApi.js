@@ -273,9 +273,27 @@ router.post('/addOrg',function(req,res){
   })
 })
 
-//修改机构
+//TODO:修改机构
 router.post('/updateOrg',function(req,res){
 
+
 })
+
+router.post('/deleteOrg',function(res,req){
+
+})
+
+router.get('/addType',function(req,res){
+
+})
+
+router.post('/updateType',function(req,res){
+
+})
+
+router.post('/deleteType',function(res,req){
+
+})
+
 
 module.exports = router;
