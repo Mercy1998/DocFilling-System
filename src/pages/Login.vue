@@ -1,10 +1,7 @@
 <template>
-    
     <div id="login">
-        <h3>登陆</h3>
-        <LoginBox>
-        </LoginBox>
-        <img>
+        <h3>文书系统人员登录</h3>
+        <LoginBox></LoginBox>
     </div>
 </template>
 
@@ -13,7 +10,7 @@
 import LoginBox from '../components/Login/LoginBox.vue';
 
 export default({
-    name:'login',
+    name:'Login',
     components:{LoginBox},
     data(){
         return{
@@ -40,6 +37,6 @@ export default({
     margin-bottom: 20px;
   }
 
-  
+
 
 </style>

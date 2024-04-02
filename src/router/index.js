@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Login from '@/pages/Login'
-import Entry from '@/pages/Entry'
-import Admin from '@/pages/Admin'
-import Setting from '@/pages/Setting'
+import Police from '@/pages/Police'
+import Inspector from '@/pages/Inspector'
+import PoliceOrgan from "@/pages/PoliceOrgan";
 
 Vue.use(Router)
 
@@ -12,24 +12,30 @@ export default new Router({
   routes: [
 
     {
-      path:'/login',
+      path:'/Login',
       component:Login
     },
     {
-      path:'/Entry',
-      component:Entry
+      path:'/PoliceOrgan',
+      component:PoliceOrgan
     },
     {
-      path:'/Admin',
-      component:Admin
+      path:'/Police',
+      component:Police,
+      children:[
+        {
+          path:'',
+          components:Police
+        }
+      ]
     },
     {
-      path:'/Setting',
-      component:Setting
+      path:'/Inspector',
+      component:Inspector
     },
     {
       path:'/',
-      redirect:'/login'
+      redirect:'/Login'
     }
   ]
 })
