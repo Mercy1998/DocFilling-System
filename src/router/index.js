@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Login from '@/pages/Login'
-import Police from '@/pages/Police'
-import Inspector from '@/pages/Inspector'
-import PoliceOrgan from "@/pages/PoliceOrgan";
+import DocofPolice from '@/pages/Police/DocofPolice'
+import DocofInspector from '@/pages/Inspector/DocofInspector'
+import DocofPoliceOrgan from "@/pages/PoliceOrgan/DocofPoliceOrgan";
 
 Vue.use(Router)
 
@@ -16,22 +16,22 @@ export default new Router({
       component:Login
     },
     {
-      path:'/PoliceOrgan',
-      component:PoliceOrgan
+      path:'/DocofPoliceOrgan',
+      component:DocofPoliceOrgan
     },
     {
-      path:'/Police',
-      component:Police,
-      children:[
-        {
-          path:'',
-          components:Police
-        }
-      ]
+      path:'/DocofPolice',
+      component:DocofPolice,
+      // children:[
+      //   {
+      //     path:'/doc1',
+      //     components:Police
+      //   }
+      // ]
     },
     {
-      path:'/Inspector',
-      component:Inspector
+      path:'/DocofInspector',
+      component:DocofInspector
     },
     {
       path:'/',

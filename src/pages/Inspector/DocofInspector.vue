@@ -1,5 +1,5 @@
 <template>
-  <div id="PoliceOrgan">
+  <div id="DocofInspector">
 
   </div>
 </template>
@@ -9,7 +9,7 @@
 import axios from 'axios';
 
 export default {
-  name: "PoliceOrgan",
+  name: "DocofInspector",
   components: {
 
   },

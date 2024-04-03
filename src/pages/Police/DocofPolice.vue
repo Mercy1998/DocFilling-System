@@ -13,9 +13,9 @@
 <script>
 
 import axios from 'axios';
-import FetchData1 from "../components/Police/FetchData1.vue";
+import FetchData1 from "../../components/Police/FetchData1.vue";
 export default {
-  name: "Police",
+  name: "DocofPolice",
   components: {
     FetchData1
   },

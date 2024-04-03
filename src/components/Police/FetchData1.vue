@@ -71,6 +71,7 @@ import 'docxtemplater/build/docxtemplater.js'
 import 'pizzip/dist/pizzip.js'
 import 'pizzip/dist/pizzip-utils.js'
 import 'file-saver'
+
 export default {
     name: 'FetchData1',
     data() {
