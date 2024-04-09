@@ -59,7 +59,7 @@
       </el-form-item><br>
       <el-form-item>
         <el-button type="primary" @click="generate">立即创建</el-button>
-        <el-button>重置</el-button>
+        <el-button>取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -101,12 +101,9 @@ export default {
         console.log(this.fetchData1)
       },
       // 导出word
-      loadFile(url, callback) {
-        PizZipUtils.getBinaryContent(url, callback);
-      },
       generate() {
         var that = this;
-        this.loadFile("/static/test.docx", function (error, content) {  //url模板存放的位置
+        PizZipUtils.getBinaryContent("/static/test.docx", function (error, content) {  //url模板存放的位置
           if (error) {
             throw error
           };

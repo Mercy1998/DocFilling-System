@@ -1,11 +1,11 @@
 <template>
-  <div id="DocofPolice">
-<!--    标题-->
+  <div id="Police1">
+    <!--    标题-->
     <h3>* * * 公安局</h3>
     <h2>办案协作函</h2>
     <h3>（存 根）</h3>
     <p>x公( )协字[ ]号</p>
-<!--    表单-->
+    <!--    表单-->
     <FetchData1></FetchData1>
   </div>
 </template>
@@ -15,7 +15,7 @@
 import axios from 'axios';
 import FetchData1 from "../../components/Police/FetchData1.vue";
 export default {
-  name: "DocofPolice",
+  name: "Police1",
   components: {
     FetchData1
   },

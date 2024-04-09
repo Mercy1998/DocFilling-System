@@ -118,11 +118,11 @@ export default({
                         console.log(res);
                         if(res.data.state == 1){
                             if(loginType === '公安机关'){
-                                this.$router.replace({path:"DocofPoliceOrgan"});
+                                this.$router.replace({path:"/DocofPoliceOrgan"});
                             }else if(loginType === '民警'){
-                                this.$router.replace({path:"/DocofPolice"});
+                                this.$router.replace({path:"/Police1"});
                             }else if (loginType === '侦察人员'){
-                              this.$router.replace({path:"/DocofInspector"});
+                              this.$router.replace({path:"/Inspector1"});
                             }
 
 
