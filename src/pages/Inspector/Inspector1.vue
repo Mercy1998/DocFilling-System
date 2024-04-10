@@ -3,9 +3,8 @@
   <div id="Inspector1">
     <h3 style="padding-top: 10px;margin-bottom: 10px">扣押清单</h3>
       <DetectionInput @getFormData="onSubmit" ></DetectionInput>
-      <DetectionList :tableData="tableDatas" v-if="tableDatas"></DetectionList>
-      <el-button type="primary" @click="generate"  id="my-download-btn">导出</el-button>
-      <el-button type="danger" @click="clearAll" >清空</el-button>
+      <DetectionList :tableData="tableDatas"></DetectionList>
+      <el-button type="primary" @click="generate" >导出</el-button>
   </div>
 </template>
 
@@ -57,28 +56,10 @@ export default {
       this.tableDatas.push(newRow)
     },
       generate() {
+          console.log(this.tableDatas)
           let that = this.tableDatas
-          export2Word("test2","test2",that)
+          export2Word("/侦察人员/扣押清单","扣押清单",...that)
       },
-      clearAll(){
-          this.$confirm('此操作将清空内容, 是否继续?', '提示', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-          }).then(() => {
-              this.$message({
-                  type: 'success',
-                  message: '清空成功!'
-              });
-              this.tableDatas = []
-          }).catch(() => {
-              this.$message({
-                  type: 'info',
-                  message: '已取消'
-              });
-          });
-      }
-
   }
 }
 </script>

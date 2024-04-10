@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Login from '@/pages/Login'
-import DocofPolice from '@/pages/Police/DocofPolice'
-import DocofInspector from '@/pages/Inspector/DocofInspector'
-import DocofPoliceOrgan from "@/pages/PoliceOrgan/DocofPoliceOrgan";
+import Login from '../pages/Login'
+import DocofPolice from '../pages/Police/DocofPolice'
+import DocofInspector from '../pages/Inspector/DocofInspector'
+import DocofPoliceOrgan from "../pages/PoliceOrgan/DocofPoliceOrgan";
 import Inspector1 from "../pages/Inspector/Inspector1.vue";
 import Police1 from "../pages/Police/Police1.vue";
 import Inspector2 from "../pages/Inspector/Inspector2.vue";

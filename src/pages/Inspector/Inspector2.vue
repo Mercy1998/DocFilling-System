@@ -3,14 +3,14 @@
   <div id="Inspector2">
     <h3>电子数据检查笔录</h3>
     <el-form :label-position="labelPosition" ref="Inspector2" :model="Inspector2" label-width="98px" style="width: 95%">
-      <el-form-item label="指派日期">
+      <el-form-item label="申请时间">
         <el-date-picker type="datetime" placeholder="选择日期" v-model="Inspector2.rowDate" style="width: 100%;"></el-date-picker>
       </el-form-item>
-      <el-form-item label="applicant">
-        <el-input v-model="Inspector2.applicant"></el-input>
+      <el-form-item label="申请人">
+        <el-input v-model="Inspector2.applicant" placeholder="请输入申请人姓名"></el-input>
       </el-form-item>
       <el-form-item label="指派人员">
-        <el-input v-model="Inspector2.Inspectors"></el-input>
+        <el-input v-model="Inspector2.Inspectors" placeholder="请输入姓名"></el-input>
       </el-form-item><br>
       <el-form-item label="检查时间">
         <el-col :span="11">
