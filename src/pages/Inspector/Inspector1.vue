@@ -1,8 +1,11 @@
+<!--扣押介质-->
 <template>
   <div id="Inspector1">
-    <h3>扣押清单</h3>
-    <DetectionList :tableData="tableDatas" :isDownShow=isDownShow v-if="tableDatas"></DetectionList>
-    <DetectionInput @getFormData="onSubmit" ></DetectionInput>
+    <h3 style="padding-top: 10px;margin-bottom: 10px">扣押清单</h3>
+      <DetectionInput @getFormData="onSubmit" ></DetectionInput>
+      <DetectionList :tableData="tableDatas" v-if="tableDatas"></DetectionList>
+      <el-button type="primary" @click="generate"  id="my-download-btn">导出</el-button>
+      <el-button type="danger" @click="clearAll" >清空</el-button>
   </div>
 </template>
 
@@ -11,6 +14,7 @@
 import axios from 'axios';
 import DetectionInput from "../../components/Inspector/Detection/DetectionInput.vue";
 import DetectionList from "../../components/Inspector/Detection/DetectionList.vue";
+import {export2Word} from "../../../static/utils/Export2Word";
 
 export default {
   name: "Inspector1",
@@ -20,7 +24,6 @@ export default {
   },
   data() {
     return {
-      isDownShow: false,
       tableDatas: []
     }
   },
@@ -28,20 +31,6 @@ export default {
   },
   methods: {
     onSubmit(data) {
-      // this.tableDatas = []
-      this.isDownShow = true
-      // 时间处理
-      // let date = new Date(data.buyTime);
-      // let year = date.getFullYear();
-      // let month = date.getMonth() + 1;
-      // let day = date.getDate();
-      //
-      // month = (month > 9) ? month : ("0" + month);
-      // day = (day < 10) ? ("0" + day) : day;
-      //
-      // date = year + "/" + month + "/" + day;
-      //
-      // console.log(date)
       if (!data.name) {
         alert("名称不能为空！")
         return;
@@ -67,6 +56,28 @@ export default {
       console.log(newRow)
       this.tableDatas.push(newRow)
     },
+      generate() {
+          let that = this.tableDatas
+          export2Word("test2","test2",that)
+      },
+      clearAll(){
+          this.$confirm('此操作将清空内容, 是否继续?', '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+          }).then(() => {
+              this.$message({
+                  type: 'success',
+                  message: '清空成功!'
+              });
+              this.tableDatas = []
+          }).catch(() => {
+              this.$message({
+                  type: 'info',
+                  message: '已取消'
+              });
+          });
+      }
 
   }
 }
