@@ -1,32 +1,65 @@
 <template>
   <div id="DocofInspector">
-    <el-container>
-      <el-header>文书填写系统</el-header>
+    <el-container  class="about-container">
+      <el-header>
+        <h1>文书填写系统</h1>
+        <div id="header-right">
+        <span>您的角色：侦察人员</span>
+        <el-button type="primary">退出</el-button>
+        </div>
+      </el-header>
+
       <el-container>
         <el-aside width="200px">
           <el-menu>
-<!--            -->
+            <!--            -->
             <el-submenu index="1">
-              <template slot="title"><i class="el-icon-message"></i>现场提取</template>
+              <template slot="title"><i class="el-icon-s-home"></i>现场提取</template>
+              <el-menu-item-group>
+                <!--                <template slot="title">分组一</template>-->
+                <el-menu-item index="Inspector5">现场提取笔录</el-menu-item>
+                <el-menu-item index="Inspector7">电子数据提取固定清单</el-menu-item>
+              </el-menu-item-group>
             </el-submenu>
             <el-submenu index="2">
-              <template slot="title"><i class="el-icon-message"></i>网络提取</template>
+              <template slot="title"><i class="el-icon-share"></i>网络提取</template>
+              <el-menu-item-group>
+                <el-menu-item index="Inspector4">网络在线提取笔录</el-menu-item>
+                <el-menu-item index="Inspector7">电子数据提取固定清单</el-menu-item>
+              </el-menu-item-group>
             </el-submenu>
             <el-submenu index="3">
-              <template slot="title"><i class="el-icon-message"></i>导航三</template>
+              <template slot="title"><i class="el-icon-s-release"></i>扣押介质</template>
+              <el-menu-item-group>
+                <el-menu-item index="Inspector1">扣押清单</el-menu-item>
+              </el-menu-item-group>
             </el-submenu>
-            <el-submenu index="1">
-              <template slot="title"><i class="el-icon-message"></i>导航四</template>
+            <el-submenu index="4">
+              <template slot="title"><i class="el-icon-s-data"></i>数据检查</template>
+              <el-menu-item-group>
+                <el-menu-item index="Inspector2">电子数据检查笔录</el-menu-item>
+                <el-menu-item index="Inspector7">电子数据提取固定清单</el-menu-item>
+              </el-menu-item-group>
             </el-submenu>
-            <el-submenu index="2">
-              <template slot="title"><i class="el-icon-message"></i>导航五</template>
+            <el-submenu index="5">
+              <template slot="title"><i class="el-icon-s-claim"></i>远程勘验</template>
+              <el-menu-item-group>
+                <el-menu-item index="Inspector6">远程勘验笔录</el-menu-item>
+                <el-menu-item index="Inspector7">电子数据提取固定清单</el-menu-item>
+              </el-menu-item-group>
             </el-submenu>
-            <el-submenu index="3">
-              <template slot="title"><i class="el-icon-message"></i>导航六</template>
+            <el-submenu index="6">
+              <template slot="title"><i class="el-icon-s-check"></i>检验与鉴定</template>
+            </el-submenu>
+            <el-submenu index="7">
+              <template slot="title"><i class="el-icon-s-claim"></i>数据侦察</template>
+              <el-menu-item-group>
+                <el-menu-item index="Inspector3">侦查实验笔录</el-menu-item>
+              </el-menu-item-group>
             </el-submenu>
           </el-menu>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main></el-main>
       </el-container>
     </el-container>
   </div>
@@ -45,9 +78,15 @@ export default {
     return {
     }
   },
-  created() {
+  mounted() {
+    this.sidebarItem = this.$route.name;
   },
-  methods: {}
+  methods: {
+    changeSidebar(path) {
+      this.$router.push(path);
+    },
+  }
+
 }
 </script>
 
@@ -65,13 +104,21 @@ export default {
   text-align: left;
   line-height: 60px;
 }
+#header-right{
+  position: relative;
+  color: black;
+  left: 83%;
+  top: -100%;
+  width: 400px;
+  height: 50px;
+  //font-size: 1em;
 
+}
 .el-aside {
   background-color: #D3DCE6;
   color: #333;
   text-align: center;
   line-height: 200px;
-  height: 500px;
 }
 
 .el-main {
@@ -92,5 +139,8 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
+}
+.about-container{
+  height: 100vh;
 }
 </style>
