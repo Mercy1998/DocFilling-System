@@ -2,7 +2,7 @@
   <div id="DocofInspector">
     <el-container  class="about-container">
       <el-header>
-        <header-right></header-right>
+        <header-right :username="role"></header-right>
       </el-header>
 
       <el-container>
@@ -75,6 +75,7 @@ export default {
   },
   data() {
     return {
+      role:'侦察人员'
     }
   },
   // mounted() {

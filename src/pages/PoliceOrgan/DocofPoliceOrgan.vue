@@ -2,7 +2,7 @@
   <div id="DocofPoliceOrgan">
     <el-container  class="about-container">
       <el-header>
-        <header-right></header-right>
+        <header-right :username="role"></header-right>
       </el-header>
 
       <el-container>
@@ -37,6 +37,8 @@ export default {
   },
   data() {
     return {
+      // 用户角色
+      role:'公安机关'
     }
   },
   created() {

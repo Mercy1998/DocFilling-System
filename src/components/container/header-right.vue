@@ -1,10 +1,10 @@
-<!--电子数据提取固定清单-->
+<!-- 网页头部 -->
 <template>
   <div id="header-right">
     <h1>文书填写系统</h1>
     <div id="my-right">
-      <span>您的角色：侦察人员</span>
-      <el-button type="primary" @click="quit">退出</el-button>
+      <span style="padding-right: 20px">角色：{{username}}        </span>
+      <el-button type="primary" @click="quit" style="padding: 10px 12px">退出</el-button>
     </div>
 
   </div>
@@ -13,9 +13,15 @@
 <script>
 export default {
   name:'header-right',
+  props:{
+    username:{
+
+    }
+  },
   data(){
     return{
-
+      type: String,
+      required: true
     }
   },
   methods:{

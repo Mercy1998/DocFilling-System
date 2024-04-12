@@ -2,12 +2,12 @@
   <div id="DocofPolice">
     <el-container  class="about-container">
       <el-header>
-        <header-right></header-right>
+        <header-right :username="role"></header-right>
       </el-header>
 
       <el-container>
         <el-aside width="200px">
-          <el-menu>
+          <el-menu >
             <!--            -->
             <el-submenu index="1">
               <template slot="title"><i class="el-icon-s-home"></i>调取数据</template>
@@ -36,6 +36,7 @@ export default {
   },
   data() {
     return {
+      role:'民警'
     }
   },
   created() {
