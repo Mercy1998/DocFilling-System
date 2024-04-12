@@ -79,7 +79,7 @@ export default new Router({
       children:[
         {
           path: '/PoliceOrgan1',
-          components: PoliceOrgan1
+          component: PoliceOrgan1
         }
       ]
     },

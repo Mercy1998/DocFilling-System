@@ -76,11 +76,7 @@
 <script>
 
 import axios from 'axios';
-import FetchData1 from "../../components/Police/FetchData1.vue";
-import 'docxtemplater/build/docxtemplater.js'
-import 'pizzip/dist/pizzip.js'
-import 'pizzip/dist/pizzip-utils.js'
-import 'file-saver'
+
 import {export2Word} from "../../../static/utils/Export2Word";
 export default {
   name: "Police1",

@@ -7,19 +7,21 @@
 
       <el-container>
         <el-aside width="200px">
-          <el-menu >
+          <el-menu @select="changeSidebar" :unique-opened="true" :router="true">
             <!--            -->
             <el-submenu index="1">
               <template slot="title"><i class="el-icon-s-home"></i>调取数据</template>
               <el-menu-item-group>
 <!--                <template slot="title">分组一</template>-->
-                <el-menu-item index="Police1">办案协作涵</el-menu-item>
-                <el-menu-item index="Police2">调取电子数据通知书</el-menu-item>
+                <el-menu-item index="/Police1">办案协作涵</el-menu-item>
+                <el-menu-item index="/Police2">调取电子数据通知书</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
           </el-menu>
         </el-aside>
-        <el-main></el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -41,7 +43,12 @@ export default {
   },
   created() {
   },
-  methods: {}
+  methods: {
+    changeSidebar(path) {
+      console.log(path)
+      this.$router.push(path)
+    }
+  }
 }
 </script>
 
