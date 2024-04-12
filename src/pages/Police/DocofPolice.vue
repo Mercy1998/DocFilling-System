@@ -2,8 +2,9 @@
   <div id="DocofPolice">
     <el-container  class="about-container">
       <el-header>
-        <h1>文书填写系统</h1>
-          <el-button type="primary">退出登录</el-button>
+<!--        <h1>文书填写系统</h1>-->
+<!--          <el-button type="primary">退出登录</el-button>-->
+        <header-right></header-right>
       </el-header>
 
       <el-container>
@@ -11,35 +12,12 @@
           <el-menu>
             <!--            -->
             <el-submenu index="1">
-              <template slot="title"><i class="el-icon-s-home"></i>现场提取</template>
+              <template slot="title"><i class="el-icon-s-home"></i>调取数据</template>
               <el-menu-item-group>
 <!--                <template slot="title">分组一</template>-->
-                <el-menu-item index="1-1">现场提取笔录</el-menu-item>
+                <el-menu-item index="Police1">办案协作涵</el-menu-item>
+                <el-menu-item index="Police2">调取电子数据通知书</el-menu-item>
               </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="2">
-              <template slot="title"><i class="el-icon-share"></i>网络提取</template>
-              <el-menu-item-group>
-                <el-menu-item index="1-1">网络在线提取笔录</el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="3">
-              <template slot="title"><i class="el-icon-s-release"></i>扣押介质</template>
-              <el-menu-item-group>
-                <el-menu-item index="1-1">扣押清单</el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="1">
-              <template slot="title"><i class="el-icon-s-data"></i>数据检查</template>
-              <el-menu-item-group>
-                <el-menu-item index="1-1">电子数据检查笔录</el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="2">
-              <template slot="title"><i class="el-icon-s-claim"></i>远程勘验</template>
-            </el-submenu>
-            <el-submenu index="3">
-              <template slot="title"><i class="el-icon-s-check"></i>检验与鉴定</template>
             </el-submenu>
           </el-menu>
         </el-aside>
@@ -52,11 +30,11 @@
 <script>
 
 import axios from 'axios';
-
+import headerRight from "../../components/container/header-right.vue";
 export default {
   name: "DocofPolice",
   components: {
-
+    headerRight
   },
   data() {
     return {

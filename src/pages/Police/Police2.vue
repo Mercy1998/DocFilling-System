@@ -1,13 +1,13 @@
-<!--电子数据提取固定清单-->
+<!--调取电子数据通知书-->
 <template>
-  <div id="Inspector7">
+  <div id="Police2">
 
   </div>
 </template>
 
 <script >
 export default {
-  name:'Inspector7',
+  name:'Police2',
   data(){
     return{
 

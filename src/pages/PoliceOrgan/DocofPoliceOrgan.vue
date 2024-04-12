@@ -4,7 +4,7 @@
       <el-header>
         <h1>文书填写系统</h1>
         <h5>您的角色：公安机关</h5>
-        <el-button type="primary">退出登录</el-button>
+        <el-button type="primary">退出</el-button>
       </el-header>
 
       <el-container>
@@ -12,11 +12,10 @@
           <el-menu>
             <!--            -->
             <el-submenu index="1">
-              <template slot="title"><i class="el-icon-s-home"></i>调取数据</template>
+              <template slot="title"><i class="el-icon-s-home"></i>冻结数据</template>
               <el-menu-item-group>
                 <!--                <template slot="title">分组一</template>-->
-                <el-menu-item index="1-1">办案协作函</el-menu-item>
-                <el-menu-item index="1-2">调取证据通知书</el-menu-item>
+                <el-menu-item index="PoliceOrgan1">协助,冻结解除冻结电子数据通知书</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
           </el-menu>

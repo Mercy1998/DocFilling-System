@@ -11,7 +11,7 @@
 
       <el-container>
         <el-aside width="200px">
-          <el-menu>
+          <el-menu @select="changeSidebar" :unique-opened="true" :default-active="$route.path">
             <!--            -->
             <el-submenu index="1">
               <template slot="title"><i class="el-icon-s-home"></i>现场提取</template>
@@ -59,7 +59,9 @@
             </el-submenu>
           </el-menu>
         </el-aside>
-        <el-main></el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -78,9 +80,9 @@ export default {
     return {
     }
   },
-  mounted() {
-    this.sidebarItem = this.$route.name;
-  },
+  // mounted() {
+  //   this.sidebarItem = this.$route.name;
+  // },
   methods: {
     changeSidebar(path) {
       this.$router.push(path);
