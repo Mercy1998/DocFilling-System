@@ -2,11 +2,7 @@
   <div id="DocofInspector">
     <el-container  class="about-container">
       <el-header>
-        <h1>文书填写系统</h1>
-        <div id="header-right">
-        <span>您的角色：侦察人员</span>
-        <el-button type="primary">退出</el-button>
-        </div>
+        <header-right></header-right>
       </el-header>
 
       <el-container>
@@ -69,11 +65,12 @@
 
 <script>
 
-import axios from 'axios';
+import headerRight from "../../components/container/header-right.vue";
 
 export default {
   name: "DocofInspector",
   components: {
+    headerRight
 
   },
   data() {
@@ -106,16 +103,6 @@ export default {
   text-align: left;
   line-height: 60px;
 }
-#header-right{
-  position: relative;
-  color: black;
-  left: 83%;
-  top: -100%;
-  width: 400px;
-  height: 50px;
-  //font-size: 1em;
-
-}
 .el-aside {
   background-color: #D3DCE6;
   color: #333;
@@ -145,4 +132,5 @@ body > .el-container {
 .about-container{
   height: 100vh;
 }
+
 </style>

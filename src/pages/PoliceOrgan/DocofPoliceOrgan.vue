@@ -2,9 +2,7 @@
   <div id="DocofPoliceOrgan">
     <el-container  class="about-container">
       <el-header>
-        <h1>文书填写系统</h1>
-        <h5>您的角色：公安机关</h5>
-        <el-button type="primary">退出</el-button>
+        <header-right></header-right>
       </el-header>
 
       <el-container>
@@ -29,10 +27,12 @@
 <script>
 
 import axios from 'axios';
+import headerRight from "../../components/container/header-right.vue";
 
 export default {
   name: "DocofPoliceOrgan",
   components: {
+    headerRight
 
   },
   data() {

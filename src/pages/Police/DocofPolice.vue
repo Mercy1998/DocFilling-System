@@ -2,8 +2,6 @@
   <div id="DocofPolice">
     <el-container  class="about-container">
       <el-header>
-<!--        <h1>文书填写系统</h1>-->
-<!--          <el-button type="primary">退出登录</el-button>-->
         <header-right></header-right>
       </el-header>
 
