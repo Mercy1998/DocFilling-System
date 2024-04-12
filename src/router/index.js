@@ -21,6 +21,7 @@ import Inspector7 from "../pages/Inspector/Inspector7.vue";
 import PoliceOrgan1 from "../pages/PoliceOrgan/PoliceOrgan1.vue";
 
 Vue.use(Router)
+// ToDo:页面跳转
 
 export default new Router({
   routes: [
