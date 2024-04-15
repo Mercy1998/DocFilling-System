@@ -65,12 +65,7 @@ export default {
 </script>
 
 <style>
-* {
-  padding: 0;
-  margin: 0 auto;
-  /* 标准盒子 */
-  box-sizing: border-box;
-}
+
 #Inspector1 {
   background-color: #f7f8f9;
 }

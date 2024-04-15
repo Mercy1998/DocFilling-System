@@ -1,11 +1,21 @@
-<script setup>
-
-</script>
 
 <template>
+  <div id="PoliceOrgan1">
 
+  </div>
 </template>
 
-<style scoped>
+<script >
+export default{
+  name:'PoliceOrgan1',
+  data(){
+    return{
+
+    }
+  }
+}
+</script>
+
+<style >
 
 </style>
