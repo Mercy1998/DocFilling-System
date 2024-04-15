@@ -15,13 +15,13 @@ export default {
   name:'header-right',
   props:{
     username:{
-
+      type: String,
+      required: true
     }
   },
   data(){
     return{
-      type: String,
-      required: true
+
     }
   },
   methods:{
@@ -54,7 +54,6 @@ export default {
   color: black;
   left: 82%;
   top:0;
-
   height: 50px;
 //font-size: 1em;
 

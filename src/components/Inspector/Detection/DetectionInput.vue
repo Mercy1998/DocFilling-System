@@ -9,15 +9,15 @@
       </el-form-item>
       <el-form-item label="数量" prop="quantity">
         <el-input-number v-model="inputBox.quantity" :min="0" :max="100"></el-input-number>
-      </el-form-item>
+      </el-form-item><br>
       <el-form-item label="特征" prop="feature">
-        <el-input v-model="inputBox.feature" placeholder="请输入特征" size="small"></el-input>
+        <el-input v-model="inputBox.feature" placeholder="请输入特征"></el-input>
       </el-form-item>
       <el-form-item label="来源" prop="from">
-        <el-input v-model="inputBox.from" placeholder="请输入来源" size="small"></el-input>
+        <el-input v-model="inputBox.from" placeholder="请输入来源"></el-input>
       </el-form-item>
       <el-form-item label="备注" prop="remark">
-        <el-input v-model="inputBox.remark" placeholder="请输入备注" size="small"></el-input>
+        <el-input v-model="inputBox.remark" placeholder="请输入备注"></el-input>
       </el-form-item>
       <br>
       <el-form-item>

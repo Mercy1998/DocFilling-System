@@ -1,7 +1,7 @@
 <!--电子数据检查笔录-->
 <template>
   <div id="Inspector2">
-    <h3>电子数据检查笔录</h3>
+    <my-header1 :doc-title="docTitle"></my-header1>
     <el-form :label-position="labelPosition" ref="Inspector2" :model="Inspector2" label-width="98px" style="width: 95%">
       <el-form-item label="申请时间">
         <el-date-picker type="datetime" placeholder="选择日期" v-model="Inspector2.rowDate" style="width: 100%;"></el-date-picker>
@@ -87,9 +87,11 @@
 
 import {export2Word} from "../../../static/utils/Export2Word.js";
 import {formatDateTime} from "../../../static/utils/utilities.js"
+import MyHeader1 from "../../components/container/my-header1.vue";
 export default {
   name: "Inspector2",
   components: {
+    MyHeader1
   },
   data() {
     return {
@@ -111,7 +113,8 @@ export default {
         way:'',
         result:''
   },
-        labelPosition:'right'
+        labelPosition:'right',
+      docTitle: "电子数据检查笔录"
     }
   },
   created() {

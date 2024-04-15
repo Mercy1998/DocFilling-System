@@ -1,7 +1,7 @@
 <!--扣押介质-->
 <template>
   <div id="Inspector1">
-    <h3 style="padding-top: 10px;margin-bottom: 10px">扣押清单</h3>
+    <my-header1 :doc-title="docTitle"></my-header1>
       <DetectionInput @getFormData="onSubmit" ></DetectionInput>
       <DetectionList :tableData="tableDatas"></DetectionList>
       <el-button type="primary" @click="generate" >导出</el-button>
@@ -14,16 +14,19 @@ import axios from 'axios';
 import DetectionInput from "../../components/Inspector/Detection/DetectionInput.vue";
 import DetectionList from "../../components/Inspector/Detection/DetectionList.vue";
 import {export2Word} from "../../../static/utils/Export2Word";
+import MyHeader1 from "../../components/container/my-header1.vue";
 
 export default {
   name: "Inspector1",
   components: {
+    MyHeader1,
     DetectionInput,
     DetectionList
   },
   data() {
     return {
-      tableDatas: []
+      tableDatas: [],
+      docTitle: "扣押清单"
     }
   },
   created() {

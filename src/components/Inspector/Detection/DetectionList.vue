@@ -2,7 +2,7 @@
   <div id="DetectionList">
     <el-table id="table"
               :data="tableData"
-              style="width: 100%; margin: 0 auto;" height="300">
+              style="width: 100%; margin: 0 auto; " height="300">
       <!-- 表格列表 -->
       <el-table-column label="编号" prop="ID"></el-table-column>
       <el-table-column label="名称" prop="name"></el-table-column>
@@ -51,5 +51,7 @@ export default {
 
 
 <style >
-
+.cell{
+  text-align: center;
+}
 </style>

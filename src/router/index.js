@@ -18,6 +18,7 @@ import DocofInspector from '../pages/Inspector/DocofInspector'
 import DocofPoliceOrgan from "../pages/PoliceOrgan/DocofPoliceOrgan"
 //DocofPolice
 import Police1 from "../pages/Police/Police1.vue";
+import Police2 from "../pages/Police/Police2.vue";
 // DocofInspector
 
 
@@ -38,6 +39,10 @@ export default new Router({
         {
           path:'/Police1',
           component:Police1
+        },
+        {
+          path:'/Police2',
+          component:Police2
         }
       ]
     },
@@ -59,7 +64,7 @@ export default new Router({
         },
         {
           path:'/Inspector4',
-          componentcomponent:Inspector4
+          component:Inspector4
         },
         {
           path:'/Inspector5',
