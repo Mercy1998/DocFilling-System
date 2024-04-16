@@ -146,7 +146,7 @@ export default {
 <style>
 #Police1 {
   padding: 0;
-  margin: 0 auto;
+  margin: 0;
   background-color: #f7f8f9;
 }
 

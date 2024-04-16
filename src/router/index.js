@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 //登录页面
 import Login from '../pages/Login'
-import Inspector1 from "../pages/Inspector/Inspector1.vue"
+import Inspector1 from "../pages/Inspector/Inspector1_1.vue"
 import Inspector2 from "../pages/Inspector/Inspector2.vue"
 import Inspector3 from "../pages/Inspector/Inspector3.vue"
 import Inspector4 from "../pages/Inspector/Inspector4.vue"
@@ -90,7 +90,6 @@ export default new Router({
         }
       ]
     },
-
     {
       path:'/',
       redirect:'/Login'
