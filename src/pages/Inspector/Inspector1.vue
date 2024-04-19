@@ -1,4 +1,4 @@
-<!--扣押介质-->
+<!--扣押介质  改为Inspector1_1.vue -->
 <template>
   <div id="Inspector1">
     <my-header1 :doc-title="docTitle"></my-header1>
