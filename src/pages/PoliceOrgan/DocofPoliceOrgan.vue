@@ -10,7 +10,7 @@
           <el-menu @select="changeSidebar" :unique-opened="true" :router="true">
             <!--            -->
             <el-submenu index="1">
-              <template slot="title"><i class="el-icon-s-data"></i>文书统计</template>
+              <template slot="title"><i class="el-icon-s-data"></i>统计</template>
               <el-menu-item-group>
                 <!--                <template slot="title">分组一</template>-->
                 <el-menu-item index="/check1">数量统计</el-menu-item>

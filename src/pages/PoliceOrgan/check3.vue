@@ -1,6 +1,7 @@
-<div>
-<div class="echart-box" ref="box"></div>
-</div>
+<!--未审批-->
+<template>
+  <div class="check3"></div>
+</template>
 <style scoped>
 .echart-box{
   width: 500px;
@@ -10,3 +11,5 @@
 }
 
 </style>
+<script>
+</script>

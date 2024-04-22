@@ -47,16 +47,18 @@ router.get('/Login', (req, res) => {
 
 // 保存数据
 router.post('/save',(req,res)=>{
-  let sqlStr = "insert into docs(title,content,isCheck) values (?,?,?)";
+  let sqlStr = "insert into docs(title,content,isCheck,date,provider) values (?,?,?,?,?)";
   const params = req.body["params"];
   console.log(params)
   const title=params.title
   const content=params.content
+  const date = params.date
+  const provider = params.provider
   const isCheck="否"
 
   console.log(title)
   console.log(content)
-  conn.query(sqlStr,[title,content,isCheck],function(err,results){
+  conn.query(sqlStr,[title,content,isCheck,date,provider],function(err,results){
     if(err) {
       return console.log("添加失败"+err.message)
     }
@@ -95,6 +97,25 @@ router.get('/getCount',(req,res)=>{
     }
     res.send(count)
   })
+
+})
+
+//获得所有文书列表
+router.get('/getAllTable',(req,res)=>{
+
+})
+//获得已审批列表
+router.get('/getChecked',(req,res)=>{
+
+})
+
+//修改审批状态
+router.post('/changeChecked',(req,res)=>{
+  //update
+})
+
+//获得未审批列表
+router.get('/getNotChecked',(req,res)=>{
 
 })
 module.exports = router;
