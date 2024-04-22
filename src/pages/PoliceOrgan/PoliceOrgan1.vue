@@ -3,8 +3,7 @@
   <div id="PoliceOrgan1">
       <!--    标题-->
       <h3>* * * 公安局</h3>
-      <h2>协助冻结/解除冻结</h2>
-      <h2>电子数据通知书</h2>
+    <my-header1 :doc-title="docTitle"></my-header1>
       <!--    <h3>（存 根）</h3>-->
       <!--    <h5>x公( {{No1}})协字[ {{No2}}]号</h5>-->
       <h5>x公( )冻x/解冻x字[ ]号</h5>
@@ -74,8 +73,8 @@
           <el-input v-model="PoliceOrgan1.fillingPer"></el-input>
         </el-form-item><br>
         <el-form-item>
+          <el-button type="primary" @click="save">保存</el-button>
           <el-button type="primary" @click="generate">导出</el-button>
-          <el-button type="success" @click="next">下一步</el-button>
           <el-button type="danger" @click="clearAll">重置</el-button>
         </el-form-item>
       </el-form>
@@ -84,11 +83,15 @@
 
 <script >
 import {export2Word} from "../../../static/utils/Export2Word";
+import MyHeader1 from "../../components/container/my-header1.vue";
+import {save2DB} from "../../../static/utils/utilities";
 
 export default {
   name: 'PoliceOrgan1',
+  components: {MyHeader1},
   data() {
     return {
+      docTitle: '协助冻结/解除冻结电子数据通知书',
       PoliceOrgan1: {
         name: '',
         ID: '',
@@ -118,6 +121,9 @@ export default {
         let that = this.PoliceOrgan1
         export2Word("民警/协助冻结\/解除冻结电子数据通知书", "协助冻结/解除冻结电子数据通知书", that)
       },
+    save(){
+      save2DB(this.docTitle,this.PoliceOrgan1)
+    }
     }
   }
 }

@@ -53,6 +53,7 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-button type="primary" @click="save">保存</el-button>
       <el-button type="primary" @click="generate()" >导出</el-button>
 
     </div>
@@ -66,6 +67,7 @@ import Docxtemplater from 'docxtemplater'
 import PizZip from 'pizzip'
 import JSZipUtils from 'jszip-utils'
 import {saveAs} from 'file-saver'
+import axios from "axios";
 
 
 export default {
@@ -170,7 +172,35 @@ export default {
     // 将目标文件对象保存为目标类型的文件，并命名
     saveAs(out, "扣押清单.docx");
   })
-}
+},
+    save(){
+      // 合并数组
+      let that = this.tableDatas
+      let totalStr = ''
+      console.log(that)
+      for(let i=0;i<that.length;i++){
+        console.log(that[i])
+        let obj = that[i]
+        for(let key in obj){
+          console.log(obj[key])
+          totalStr += obj[key] + '|'
+        }
+      }
+      axios.post("http://localhost:3000/api/user/save", {
+            params: {
+              title: this.docTitle,
+              content: totalStr
+            }
+          }
+      ).then(function (res) {
+        console.log("saveData:" + res)
+        if (res.data.status == 200) {
+          console.log(res.data.msg)
+        }
+      }).catch(function (err) {
+        console.log(err)
+      })
+    }
   }
 }
 </script>

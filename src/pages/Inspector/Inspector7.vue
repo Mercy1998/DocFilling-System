@@ -33,8 +33,9 @@
         <el-input v-model="Inspector7.more" placeholder="请填写备注"></el-input>
       </el-form-item>
       <el-form-item>
+        <el-button type="primary" @click="save">保存</el-button>
         <el-button type="primary" @click="generate">导出</el-button>
-        <el-button>重置</el-button>
+        <el-button type="danger">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -43,6 +44,7 @@
 <script >
 import MyHeader1 from "../../components/container/my-header1.vue";
 import {formatDateTime} from "../../../static/utils/utilities";
+import {save2DB} from "../../../static/utils/utilities.js";
 import JSZipUtils from "jszip-utils";
 import PizZip from "pizzip";
 import Docxtemplater from "docxtemplater";
@@ -84,7 +86,7 @@ export default {
       console.log(newRow)
       this.tableData.push(newRow)
       let that = this
-      JSZipUtils.getBinaryContent("/static/电子数据提取固定清单.docx", function (error, content) {
+      JSZipUtils.getBinaryContent("/static/侦察人员/电子数据提取固定清单.docx", function (error, content) {
         // docxsrc是模板。我们在导出的时候，会根据此模板来导出对应的数据
         // 抛出异常
         if (error) {
@@ -132,6 +134,9 @@ export default {
 
       //导出
 
+    },
+    save(){
+      save2DB(this.docTitle,this.Inspector7)
     }
   }
 }

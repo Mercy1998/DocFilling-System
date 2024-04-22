@@ -10,12 +10,28 @@
           <el-menu @select="changeSidebar" :unique-opened="true" :router="true">
             <!--            -->
             <el-submenu index="1">
+              <template slot="title"><i class="el-icon-s-data"></i>文书统计</template>
+              <el-menu-item-group>
+                <!--                <template slot="title">分组一</template>-->
+                <el-menu-item index="/check1">数量统计</el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+            <el-submenu index="2">
+              <template slot="title"><i class="el-icon-s-claim"></i>审批</template>
+              <el-menu-item-group>
+                <!--                <template slot="title">分组一</template>-->
+                <el-menu-item index="/check2">未审批</el-menu-item>
+                <el-menu-item index="/check3">已审批</el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+            <el-submenu index="3">
               <template slot="title"><i class="el-icon-s-home"></i>冻结数据</template>
               <el-menu-item-group>
                 <!--                <template slot="title">分组一</template>-->
                 <el-menu-item index="/PoliceOrgan1">协助,冻结解除冻结电子数据通知书</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
+
           </el-menu>
         </el-aside>
         <el-main>

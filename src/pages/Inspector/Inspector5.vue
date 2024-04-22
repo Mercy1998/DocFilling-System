@@ -54,6 +54,7 @@
                   placeholder="（注明不能扣押原始存储介质的原因、原始存储介质的存放地点等情况）" v-model="Inspector5.more"></el-input>
       </el-form-item><br>
       <el-form-item>
+        <el-button type="primary" @click="save">保存</el-button>
         <el-button type="primary" @click="generate">导出</el-button>
         <el-button>重置</el-button>
       </el-form-item>
@@ -65,6 +66,7 @@
 import MyHeader1 from "../../components/container/my-header1.vue";
 import {formatDateTime} from "../../../static/utils/utilities";
 import {export2Word} from "../../../static/utils/Export2Word";
+import {save2DB} from "../../../static/utils/utilities.js";
 
 export default {
   name:'Inspector5',
@@ -100,6 +102,9 @@ export default {
       console.log("转换后"+this.Inspector5)
       let that = this.Inspector5
       export2Word("侦察人员/现场提取笔录","现场提取笔录",that)
+    },
+    save(){
+      save2DB(this.docTitle,this.Inspector5)
     }
   }
 }

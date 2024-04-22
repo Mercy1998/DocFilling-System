@@ -2,9 +2,10 @@
   <div id="Police1">
     <!--    标题-->
     <h3>* * * 公安局</h3>
-    <h2>办案协作函</h2>
+<!--    <h2>办案协作函</h2>-->
 <!--    <h3>（存 根）</h3>-->
 <!--    <h5>x公( {{No1}})协字[ {{No2}}]号</h5>-->
+    <my-header1 :doc-title="docTitle"></my-header1>
       <h5>x公( )协字[ ]号</h5>
     <!--    表单-->
     <el-form :label-position="labelPosition" :inline="true" class="demo-form-inline" ref="fPolice1" :model="Police1" label-width="90px">
@@ -65,8 +66,9 @@
         <el-input v-model="Police1.fillingPer"></el-input>
       </el-form-item><br>
       <el-form-item>
+        <el-button type="primary" @click="save">保存</el-button>
         <el-button type="primary" @click="generate">导出</el-button>
-        <el-button type="success" @click="next">下一步</el-button>
+<!--        <el-button type="success" @click="next">下一步</el-button>-->
         <el-button type="danger" @click="clearAll">重置</el-button>
       </el-form-item>
     </el-form>
@@ -78,8 +80,11 @@
 import axios from 'axios';
 
 import {export2Word} from "../../../static/utils/Export2Word";
+import MyHeader1 from "../../components/container/my-header1.vue";
+import {save2DB} from "../../../static/utils/utilities.js";
 export default {
   name: "Police1",
+  components: {MyHeader1},
   // components: {
   //   Police1
   // },
@@ -89,6 +94,7 @@ export default {
       //     No1:'',
       //     No2:''
       // },
+      docTitle: "办案协作函",
       Police1: {
         name: '',
         ID: '',
@@ -136,6 +142,9 @@ export default {
           message: '已取消'
         });
       });
+    },
+    save(){
+      save2DB(this.docTitle,this.Police1)
     }
 
   }

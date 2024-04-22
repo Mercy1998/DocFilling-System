@@ -45,5 +45,56 @@ router.get('/Login', (req, res) => {
 
 });
 
+// 保存数据
+router.post('/save',(req,res)=>{
+  let sqlStr = "insert into docs(title,content,isCheck) values (?,?,?)";
+  const params = req.body["params"];
+  console.log(params)
+  const title=params.title
+  const content=params.content
+  const isCheck="否"
 
+  console.log(title)
+  console.log(content)
+  conn.query(sqlStr,[title,content,isCheck],function(err,results){
+    if(err) {
+      return console.log("添加失败"+err.message)
+    }
+    res.send({
+      status:200,
+      msg:"修改数据成功"
+    })
+  })
+
+
+})
+//文书数量获取
+router.get('/getCount',(req,res)=>{
+  let count = []
+  let sqlStr = "SELECT \n" +
+      "SUM(CASE title WHEN '现场提取笔录' THEN 1 ELSE 0 END) AS s1,\n" +
+      "SUM(CASE title WHEN '电子数据固定提取清单' THEN 1 ELSE 0 END) AS s2,\n" +
+      "SUM(CASE title WHEN '网络提取笔录' THEN 1 ELSE 0 END) AS s3,\n" +
+      "SUM(CASE title WHEN '扣押清单' THEN 1 ELSE 0 END) AS s4,\n" +
+      "SUM(CASE title WHEN '电子数据检查笔录' THEN 1 ELSE 0 END) AS s5,\n" +
+      "SUM(CASE title WHEN '远程勘验笔录' THEN 1 ELSE 0 END) AS s6,\n" +
+      "SUM(CASE title WHEN '电子数据固定提取清单' THEN 1 ELSE 0 END) AS s7,\n" +
+      "SUM(CASE title WHEN '侦察实验笔录' THEN 1 ELSE 0 END) AS s8,\n" +
+      "SUM(CASE title WHEN '办案协作函' THEN 1 ELSE 0 END) AS s9,\n" +
+      "SUM(CASE title WHEN '调取证据通知书' THEN 1 ELSE 0 END) AS s10\n" +
+      "SUM(CASE title WHEN '协助冻结/解除冻结电子数据通知书' THEN 1 ELSE 0 END) AS s10\n" +
+      "FROM\n" +
+      "docs;"
+  conn.query(sqlStr, function (err, result) {
+    if (result){
+      console.log(result)
+      for (let key in result[0]){
+        count.push(result[0][key])
+      }
+      console.log(count)
+    }
+    res.send(count)
+  })
+
+})
 module.exports = router;

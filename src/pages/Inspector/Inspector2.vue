@@ -75,6 +75,7 @@
                   placeholder="" v-model="Inspector2.result"></el-input>
       </el-form-item><br>
       <el-form-item>
+        <el-button type="primary" @click="save">保存</el-button>
         <el-button type="primary" @click="generate">导出</el-button>
         <el-button>重置</el-button>
       </el-form-item>
@@ -87,6 +88,7 @@
 
 import {export2Word} from "../../../static/utils/Export2Word.js";
 import {formatDateTime} from "../../../static/utils/utilities.js"
+import {save2DB} from "../../../static/utils/utilities.js";
 import MyHeader1 from "../../components/container/my-header1.vue";
 export default {
   name: "Inspector2",
@@ -113,7 +115,7 @@ export default {
         way:'',
         result:''
   },
-        labelPosition:'right',
+      labelPosition:'right',
       docTitle: "电子数据检查笔录"
     }
   },
@@ -130,6 +132,9 @@ export default {
           let that = this.Inspector2
           export2Word("侦察人员/电子数据检查笔录","电子数据检查笔录",that)
       },
+    save(){
+        save2DB(this.docTitle,this.Inspector2)
+    }
 
   }
 }

@@ -67,6 +67,7 @@
                   placeholder="（注明不能扣押原始存储介质的原因等情况）" v-model="Inspector4.more"></el-input>
       </el-form-item><br>
       <el-form-item>
+        <el-button type="primary" @click="save">保存</el-button>
         <el-button type="primary" @click="generate">导出</el-button>
         <el-button>重置</el-button>
       </el-form-item>
@@ -80,6 +81,7 @@
 import {export2Word} from "../../../static/utils/Export2Word.js";
 import {formatDateTime} from "../../../static/utils/utilities.js"
 import MyHeader1 from "../../components/container/my-header1.vue";
+import {save2DB} from "../../../static/utils/utilities.js";
 export default {
   name: "Inspector4",
   components: {
@@ -121,6 +123,9 @@ export default {
       let that = this.Inspector4
       export2Word("侦察人员/网络在线提取笔录","网络在线提取笔录",that)
     },
+    save(){
+      save2DB(this.docTitle,this.Inspector4)
+    }
 
   }
 }

@@ -53,6 +53,15 @@
                 <el-menu-item index="/Inspector3">侦查实验笔录</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
+<!--            民警-->
+            <el-submenu index="8">
+              <template slot="title"><i class="el-icon-s-home"></i>调取数据</template>
+              <el-menu-item-group>
+                <!--                <template slot="title">分组一</template>-->
+                <el-menu-item index="/Police1">办案协作涵</el-menu-item>
+                <el-menu-item index="/Police2">调取电子数据通知书</el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
           </el-menu>
         </el-aside>
         <el-main>

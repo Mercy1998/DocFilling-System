@@ -12,13 +12,14 @@ import Inspector6 from "../pages/Inspector/Inspector6.vue"
 import Inspector7 from "../pages/Inspector/Inspector7.vue"
 //DocofPoliceOrgan
 import PoliceOrgan1 from "../pages/PoliceOrgan/PoliceOrgan1.vue"
+import check1 from "../pages/PoliceOrgan/check1.vue";
 //选择页面
 import DocofPolice from '../pages/Police/DocofPolice'
 import DocofInspector from '../pages/Inspector/DocofInspector'
 import DocofPoliceOrgan from "../pages/PoliceOrgan/DocofPoliceOrgan"
 //DocofPolice
-import Police1 from "../pages/Police/Police1.vue";
-import Police2 from "../pages/Police/Police2.vue";
+import Police1 from "../pages/Inspector/Police1.vue";
+import Police2 from "../pages/Inspector/Police2.vue";
 // DocofInspector
 
 
@@ -32,20 +33,13 @@ export default new Router({
       path:'/Login',
       component:Login
     },
-    {
-      path:'/DocofPolice',
-      component:DocofPolice,
-      children:[
-        {
-          path:'/Police1',
-          component:Police1
-        },
-        {
-          path:'/Police2',
-          component:Police2
-        }
-      ]
-    },
+    // {
+    //   path:'/DocofPolice',
+    //   component:DocofPolice,
+    //   children:[
+    //
+    //   ]
+    // },
     {
       path:'/DocofInspector',
       component:DocofInspector,
@@ -77,6 +71,14 @@ export default new Router({
         {
           path:'/Inspector7',
           component:Inspector7
+        },
+        {
+          path:'/Police1',
+          component:Police1
+        },
+        {
+          path:'/Police2',
+          component:Police2
         }
       ]
     },
@@ -87,7 +89,11 @@ export default new Router({
         {
           path: '/PoliceOrgan1',
           component: PoliceOrgan1
+        }, {
+          path: '/check1',
+          component: check1
         }
+
       ]
     },
     {
