@@ -66,8 +66,12 @@ export default {
         more:''
       },
       tableData:[],
-      labelPosition:'right'
+      labelPosition:'right',
+      username:''
     }
+  },
+  mounted() {
+    this.username = localStorage.getItem('name')
   },
   methods:{
     generate(){
@@ -136,7 +140,7 @@ export default {
 
     },
     save(){
-      save2DB(this.docTitle,this.Inspector7)
+      save2DB(this.docTitle,this.Inspector7,this.username)
     }
   }
 }

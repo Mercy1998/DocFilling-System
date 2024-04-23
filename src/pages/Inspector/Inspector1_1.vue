@@ -68,6 +68,7 @@ import PizZip from 'pizzip'
 import JSZipUtils from 'jszip-utils'
 import {saveAs} from 'file-saver'
 import axios from "axios";
+import {formatDateTime2} from "../../../static/utils/utilities";
 
 
 export default {
@@ -84,8 +85,12 @@ export default {
         remark:''
       },
       tableDatas:[],
-      docTitle: "扣押清单"
+      docTitle: "扣押清单",
+      username:''
     }
+  },
+  mounted() {
+      this.username = localStorage.getItem('name')
   },
   methods:{
     // 添加
@@ -177,6 +182,8 @@ export default {
       // 合并数组
       let that = this.tableDatas
       let totalStr = ''
+      let dateNow = formatDateTime2(new Date())
+      console.log("provider"+this.username)
       console.log(that)
       for(let i=0;i<that.length;i++){
         console.log(that[i])
@@ -189,7 +196,9 @@ export default {
       axios.post("http://localhost:3000/api/user/save", {
             params: {
               title: this.docTitle,
-              content: totalStr
+              content: totalStr,
+              date:dateNow,
+              provider:this.username
             }
           }
       ).then(function (res) {

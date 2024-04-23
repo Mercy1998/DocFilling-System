@@ -102,10 +102,10 @@ export default({
             this.$refs[formName].validate((valid) =>
             {
                 if(valid){
-                    sessionStorage.setItem("identity",this.loginMsg.identity)
-                    sessionStorage.setItem("name",this.loginMsg.name)
-                    let loginType = sessionStorage.getItem('identity')
-                    let loginName = sessionStorage.getItem('name')
+                    localStorage.setItem("identity",this.loginMsg.identity)
+                    localStorage.setItem("name",this.loginMsg.name)
+                    let loginType = localStorage.getItem('identity')
+                    let loginName = localStorage.getItem('name')
                     axios.get("http://localhost:3000/api/user/Login",{
                         params:{
                             name:this.loginMsg.name,

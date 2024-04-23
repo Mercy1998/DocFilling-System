@@ -112,7 +112,11 @@ export default {
         fillingPer: ''
       },
       labelPosition: 'right',
+      username:''
     }
+  },
+  mounted() {
+    this.username = localStorage.getItem('name')
   },
   methods: {
     onSubmit() {
@@ -144,7 +148,7 @@ export default {
       });
     },
     save(){
-      save2DB(this.docTitle,this.Police1)
+      save2DB(this.docTitle,this.Police1,this.username)
     }
 
   }

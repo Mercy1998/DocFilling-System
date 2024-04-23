@@ -95,10 +95,12 @@ export default {
         way:''
       },
       labelPosition:'right',
-      docTitle: "远程勘验笔录"
+      docTitle: "远程勘验笔录",
+      username:''
     }
   },
-  created() {
+  mounted() {
+    this.username = localStorage.getItem('name')
   },
   methods: {
     generate() {
@@ -112,7 +114,7 @@ export default {
       export2Word("侦察人员/远程勘验笔录","远程勘验笔录",that)
     },
     save(){
-      save2DB(this.docTitle,this.Inspector6)
+      save2DB(this.docTitle,this.Inspector6,this.username)
     }
 
   }

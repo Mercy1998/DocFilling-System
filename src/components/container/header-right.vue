@@ -3,7 +3,7 @@
   <div id="header-right">
     <h1>文书填写系统</h1>
     <div id="my-right">
-      <span style="padding-right: 20px">角色：{{username}}        </span>
+      <span style="padding-right: 20px">您好，{{username}}        </span>
       <el-button type="primary" @click="quit" style="padding: 10px 12px">退出</el-button>
     </div>
 
@@ -13,16 +13,13 @@
 <script>
 export default {
   name:'header-right',
-  props:{
-    username:{
-      type: String,
-      required: true
-    }
-  },
   data(){
     return{
-
+      username:''
     }
+  },
+  mounted() {
+    this.username = localStorage.getItem('name')
   },
   methods:{
     quit(){

@@ -40,7 +40,6 @@ export default {
       axios.get('http://localhost:3000/api/user/getSearchTable', {
         params
       }).then(function (res) {
-
         that.tableDatas = []
         console.log("data:" + res.data)
         for (var i = 0; i < res.data.length; i++) {
@@ -48,9 +47,9 @@ export default {
           let dataList = res.data[i]
           let newRow = {
             title:dataList[0],
-            check:dataList[1],
-            date:dataList[2],
-            provider:dataList[3]
+            provider:dataList[4],
+            date:dataList[3],
+            check:dataList[2]
           }
           console.log(newRow)
           that.tableDatas.push(newRow)

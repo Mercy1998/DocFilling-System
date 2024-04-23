@@ -2,7 +2,7 @@
   <div id="DocofInspector">
     <el-container  class="about-container">
       <el-header>
-        <header-right :username="role"></header-right>
+        <header-right ></header-right>
       </el-header>
 
       <el-container>
@@ -84,12 +84,13 @@ export default {
   },
   data() {
     return {
-      role:'侦察人员'
+      username:''
     }
   },
-  // mounted() {
-  //   this.sidebarItem = this.$route.name;
-  // },
+  mounted() {
+    this.username = sessionStorage.getItem('name')
+    console.log(this.username)
+  },
   methods: {
     changeSidebar(path) {
       window.sessionStorage.clear()

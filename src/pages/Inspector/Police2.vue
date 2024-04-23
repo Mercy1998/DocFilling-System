@@ -92,7 +92,11 @@ export default {
         fillingPer: ''
       },
       labelPosition: 'right',
+      username:''
     }
+  },
+  mounted() {
+    this.username = localStorage.getItem('name')
   },
   methods: {
     onSubmit() {
@@ -104,7 +108,6 @@ export default {
       let that = this.Police2
       export2Word("民警/调取电子数据通知书","调取证据通知书",that)
     },
-    next(){},
     clearAll(){
       this.$confirm('此操作将清空内容, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -124,7 +127,7 @@ export default {
       });
     },
     save(){
-      save2DB(this.docTitle,this.Police2)
+      save2DB(this.docTitle,this.Police2,this.username)
     }
 
   }

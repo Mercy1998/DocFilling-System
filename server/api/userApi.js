@@ -130,16 +130,60 @@ router.get('/getSearchTable',(req,res)=>{
 })
 // 获得已审批列表
 router.get('/getChecked',(req,res)=>{
-
-})
-
-//修改审批状态
-router.post('/changeChecked',(req,res)=>{
-  //update
+  let dataList = []
+  const params = req.query;
+  console.log("params" + params)
+  let sqlStr ="select * from docs where isCheck='是'";
+  conn.query(sqlStr,function (err,result){
+    if (err) {
+      return console.log("查询失败" + err.message)
+    }
+    if(result){
+      console.log(result)
+      for (let i =0;i<result.length;i++){
+        let arr = []
+        arr.push(result[i].title)
+        arr.push(result[i].content)
+        arr.push(result[i].isCheck)
+        arr.push(result[i].date)
+        arr.push(result[i].provider)
+        dataList.push(arr)
+      }
+      console.log(dataList)
+    }
+    res.send(dataList)
+  })
 })
 
 //获得未审批列表
 router.get('/getNotChecked',(req,res)=>{
+  let dataList = []
+  const params = req.query;
+  console.log("params" + params)
+  let sqlStr ="select * from docs where isCheck='否'";
+  conn.query(sqlStr,function (err,result){
+    if (err) {
+      return console.log("查询失败" + err.message)
+    }
+    if(result){
+      console.log(result)
+      for (let i =0;i<result.length;i++){
+        let arr = []
+        arr.push(result[i].title)
+        arr.push(result[i].content)
+        arr.push(result[i].isCheck)
+        arr.push(result[i].date)
+        arr.push(result[i].provider)
+        dataList.push(arr)
+      }
+      console.log(dataList)
+    }
+    res.send(dataList)
+  })
+})
+//修改审批状态
+router.post('/changeChecked',(req,res)=>{
+  //update
 
 })
 module.exports = router;

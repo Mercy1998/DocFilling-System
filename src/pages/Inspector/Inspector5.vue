@@ -90,8 +90,12 @@ export default {
         way:'',
         more:''
       },
-      labelPosition:"right"
+      labelPosition:"right",
+      username:''
     }
+  },
+  mounted() {
+    this.username = localStorage.getItem('name')
   },
   methods:{
     generate(){
@@ -104,7 +108,7 @@ export default {
       export2Word("侦察人员/现场提取笔录","现场提取笔录",that)
     },
     save(){
-      save2DB(this.docTitle,this.Inspector5)
+      save2DB(this.docTitle,this.Inspector5,this.username)
     }
   }
 }

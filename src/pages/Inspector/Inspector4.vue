@@ -107,10 +107,11 @@ export default {
         more:''
       },
       labelPosition:'right',
-
+      username:''
     }
   },
-  created() {
+  mounted() {
+    this.username = localStorage.getItem('name')
   },
   methods: {
     generate() {
@@ -124,7 +125,7 @@ export default {
       export2Word("侦察人员/网络在线提取笔录","网络在线提取笔录",that)
     },
     save(){
-      save2DB(this.docTitle,this.Inspector4)
+      save2DB(this.docTitle,this.Inspector4,this.username)
     }
 
   }

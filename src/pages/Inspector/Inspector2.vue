@@ -116,10 +116,13 @@ export default {
         result:''
   },
       labelPosition:'right',
-      docTitle: "电子数据检查笔录"
+      docTitle: "电子数据检查笔录",
+      username:''
     }
   },
-  created() {
+
+  mounted() {
+    this.username = localStorage.getItem('name')
   },
   methods: {
       generate() {
@@ -133,7 +136,8 @@ export default {
           export2Word("侦察人员/电子数据检查笔录","电子数据检查笔录",that)
       },
     save(){
-        save2DB(this.docTitle,this.Inspector2)
+
+        save2DB(this.docTitle,this.Inspector2,this.username)
     }
 
   }

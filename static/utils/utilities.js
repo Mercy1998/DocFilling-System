@@ -32,7 +32,7 @@ export function formatDateTime2(date) {
 }
 
 // 保存到数据库
-export function save2DB(title,data) {
+export function save2DB(title,data,provider) {
   //拼接数据
   let totalStr = ''
   let dateNow = formatDateTime2(new Date())
@@ -46,7 +46,7 @@ export function save2DB(title,data) {
           title: title,
           content: totalStr,
           date:dateNow,
-          provider:'Inspector1'
+          provider:provider
         }
       }
   ).then(function (res) {

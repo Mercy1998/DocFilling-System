@@ -13,8 +13,9 @@ import Inspector7 from "../pages/Inspector/Inspector7.vue"
 //DocofPoliceOrgan
 import PoliceOrgan1 from "../pages/PoliceOrgan/PoliceOrgan1.vue"
 import check1 from "../pages/PoliceOrgan/check1.vue";
+import check2 from "../pages/PoliceOrgan/check2.vue";
+import check3 from "../pages/PoliceOrgan/check3.vue";
 //选择页面
-import DocofPolice from '../pages/Police/DocofPolice'
 import DocofInspector from '../pages/Inspector/DocofInspector'
 import DocofPoliceOrgan from "../pages/PoliceOrgan/DocofPoliceOrgan"
 //DocofPolice
@@ -92,6 +93,12 @@ export default new Router({
         }, {
           path: '/check1',
           component: check1
+        }, {
+          path: '/check2',
+          component: check2
+        }, {
+          path: '/check3',
+          component: check3
         }
 
       ]
