@@ -83,8 +83,8 @@ router.get('/getCount',(req,res)=>{
       "SUM(CASE title WHEN '电子数据固定提取清单' THEN 1 ELSE 0 END) AS s7,\n" +
       "SUM(CASE title WHEN '侦察实验笔录' THEN 1 ELSE 0 END) AS s8,\n" +
       "SUM(CASE title WHEN '办案协作函' THEN 1 ELSE 0 END) AS s9,\n" +
-      "SUM(CASE title WHEN '调取证据通知书' THEN 1 ELSE 0 END) AS s10\n" +
-      "SUM(CASE title WHEN '协助冻结/解除冻结电子数据通知书' THEN 1 ELSE 0 END) AS s10\n" +
+      "SUM(CASE title WHEN '调取证据通知书' THEN 1 ELSE 0 END) AS s10,\n" +
+      "SUM(CASE title WHEN '协助冻结/解除冻结电子数据通知书' THEN 1 ELSE 0 END) AS s11\n" +
       "FROM\n" +
       "docs;"
   conn.query(sqlStr, function (err, result) {
@@ -101,10 +101,34 @@ router.get('/getCount',(req,res)=>{
 })
 
 //获得所有文书列表
-router.get('/getAllTable',(req,res)=>{
+router.get('/getSearchTable',(req,res)=>{
+  let dataList = []
+  const params = req.query;
+  console.log("params" + params)
+  const searchWord = params.content
+  let sqlStr = "select * from docs where title= '"+searchWord+"'or content like '%"+searchWord+"%'";
+  conn.query(sqlStr,[searchWord,searchWord],function (err,result){
+    if (err) {
+      return console.log("查询失败" + err.message)
+    }
+    if(result){
+      console.log(result)
+      for (let i =0;i<result.length;i++){
+        let arr = []
+        arr.push(result[i].title)
+        arr.push(result[i].isCheck)
+        arr.push(result[i].date)
+        arr.push(result[i].provider)
+        dataList.push(arr)
+      }
+      console.log(dataList)
+    }
+    res.send(dataList)
+  })
+
 
 })
-//获得已审批列表
+// 获得已审批列表
 router.get('/getChecked',(req,res)=>{
 
 })

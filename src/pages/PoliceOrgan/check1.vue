@@ -2,11 +2,11 @@
 <template>
   <div id="check1">
     <div id="search" class="demo-input-suffix">
-      <el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="input1" style="width: 65%"></el-input>
-      <el-button type="primary">搜索</el-button>
+      <el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="check1.input1" style="width: 65%"></el-input>
+      <el-button type="primary" @click="search">搜索</el-button>
     </div>
     <graph></graph>
-    <search-table></search-table>
+    <search-table :tableData="check1.tableDatas"></search-table>
 
   </div>
 </template>
@@ -22,7 +22,9 @@ export default {
   data(){
     return{
       check1:{
-
+        //输入内容
+        input1:'',
+        tableDatas:[]
       }
 
     }
@@ -30,7 +32,33 @@ export default {
   mounted() {
   },
   methods: {
+    search(){
+      let that = this.check1
+      const params ={
+        content : that.input1
+      }
+      axios.get('http://localhost:3000/api/user/getSearchTable', {
+        params
+      }).then(function (res) {
 
+        that.tableDatas = []
+        console.log("data:" + res.data)
+        for (var i = 0; i < res.data.length; i++) {
+          console.log(res.data[i])
+          let dataList = res.data[i]
+          let newRow = {
+            title:dataList[0],
+            check:dataList[1],
+            date:dataList[2],
+            provider:dataList[3]
+          }
+          console.log(newRow)
+          that.tableDatas.push(newRow)
+        }
+      }).catch(function (err){
+        console.log(err)
+      })
+    }
   }
 }
 </script>

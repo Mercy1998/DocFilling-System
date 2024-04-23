@@ -11,23 +11,19 @@ export default {
   name:'graph',
   data(){
     return{
-      graph:{
-      }
 
     }
   },
   mounted() {
     // 挂在完成dom后进行初始化
-
     this.showEcharts();
   },
   methods: {
-
     showEcharts(){
       // 获得各类文书数量
       var allCount = []
-      axios.get("http://localhost:3000/api/user/getCount", {}).then((res) => {
-        console.log("res.data   " + res.data)
+      axios.get('http://localhost:3000/api/user/getCount', {}).then((res) => {
+        console.log("res.data" + res.data)
         var all = res.data
         console.log("all " + typeof all)
         console.log(all[0])
