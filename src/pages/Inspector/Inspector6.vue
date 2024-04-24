@@ -116,7 +116,6 @@ export default {
     save(){
       save2DB(this.docTitle,this.Inspector6,this.username)
     }
-
   }
 }
 </script>

@@ -119,6 +119,7 @@ router.get('/getSearchTable',(req,res)=>{
         arr.push(result[i].isCheck)
         arr.push(result[i].date)
         arr.push(result[i].provider)
+        arr.push(result[i].id)
         dataList.push(arr)
       }
       console.log(dataList)
@@ -147,6 +148,7 @@ router.get('/getChecked',(req,res)=>{
         arr.push(result[i].isCheck)
         arr.push(result[i].date)
         arr.push(result[i].provider)
+        arr.push(result[i].id)
         dataList.push(arr)
       }
       console.log(dataList)
@@ -174,6 +176,7 @@ router.get('/getNotChecked',(req,res)=>{
         arr.push(result[i].isCheck)
         arr.push(result[i].date)
         arr.push(result[i].provider)
+        arr.push(result[i].id)
         dataList.push(arr)
       }
       console.log(dataList)
@@ -185,5 +188,27 @@ router.get('/getNotChecked',(req,res)=>{
 router.post('/changeChecked',(req,res)=>{
   //update
 
+})
+//获得内容
+router.get('/getContent',(req,res)=> {
+  let dataObj = {}
+  let sqlStr = "select content from docs where id = ? and provider = ? and title = ?"
+  const params = req.query;
+  console.log("params" + params)
+  const id = params.id
+  const provider = params.provider
+  const title = params.title
+  conn.query(sqlStr,[id,provider,title],function (err,result){
+    if(err)
+      return console.log("查询失败！"+err.message)
+    if(result){
+      console.log(result)
+      let objStr = result[0].content
+      console.log(objStr)
+      res.send(objStr)
+
+    }
+
+  })
 })
 module.exports = router;

@@ -46,6 +46,7 @@ export default {
           console.log(res.data[i])
           let dataList = res.data[i]
           let newRow = {
+            id:dataList[5],
             title:dataList[0],
             provider:dataList[4],
             date:dataList[3],

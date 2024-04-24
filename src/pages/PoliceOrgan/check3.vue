@@ -15,10 +15,10 @@ import SearchTable from "../../components/PoliceOrgan/searchTable.vue";
 import axios from "axios";
 
 export default ({
-  name:'check2',
+  name:'check3',
   components: {SearchTable, MyHeader1},
   mounted() {
-    this.showNotChecked()
+    this.showHasChecked()
   },
   data(){
     return{
@@ -28,7 +28,7 @@ export default ({
     }
   },
   methods:{
-    showNotChecked(){
+    showHasChecked(){
       var that = this.check3
       axios.get('http://localhost:3000/api/user/getChecked', ).then(function (res) {
 
@@ -38,6 +38,7 @@ export default ({
           console.log(res.data[i])
           let dataList = res.data[i]
           let newRow = {
+            id:dataList[5],
             title:dataList[0],
             provider:dataList[4],
             date:dataList[3],

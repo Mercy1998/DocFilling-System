@@ -17,11 +17,11 @@
       </el-form-item>
       <el-form-item label="指挥人员">
         <el-input v-model="Inspector5.commander" placeholder="请输入指挥人员姓名"></el-input>
-        <el-input v-model="Inspector5.iUnit" placeholder="请输入指挥人员单位"></el-input>
+        <el-input v-model="Inspector5.cUnit" placeholder="请输入指挥人员单位"></el-input>
       </el-form-item><br>
       <el-form-item label="侦察人员">
         <el-input v-model="Inspector5.Inspectors" placeholder="请输入侦察人员姓名"></el-input>
-        <el-input v-model="Inspector5.rUnit" placeholder="请输入侦察人员单位"></el-input>
+        <el-input v-model="Inspector5.iUnit" placeholder="请输入侦察人员单位"></el-input>
       </el-form-item><br>
       <el-form-item label="电子数据来源">
         <el-input v-model="Inspector5.from"></el-input>

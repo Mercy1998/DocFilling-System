@@ -23,7 +23,7 @@
       <el-form-item label="来源">
         <el-input v-model="Inspector7.from" placeholder="请电子电子数据来源"></el-input>
       </el-form-item>
-      <el-form-item label="申请人">
+      <el-form-item label="文件格式">
         <el-input v-model="Inspector7.form" placeholder="请输入文件格式，如.zip"></el-input>
       </el-form-item>
       <el-form-item label="完整性校验值">

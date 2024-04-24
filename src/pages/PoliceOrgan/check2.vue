@@ -24,7 +24,11 @@ export default ({
     return{
       check2:{
         NotChecked:[]
-      }
+      },
+      cInspector2:{
+
+      },
+      docTitle:'标题'
     }
   },
   methods:{
@@ -41,6 +45,7 @@ export default ({
             dataList[2]='未审批'
           }
           let newRow = {
+            id:dataList[5],
             title:dataList[0],
             provider:dataList[4],
             date:dataList[3],

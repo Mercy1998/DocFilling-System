@@ -35,7 +35,7 @@
 
       <h5>检查人员</h5>
       <el-form-item label="姓名">
-        <el-input v-model="Inspector4.Inspectors"></el-input>
+        <el-input v-model="Inspector4.Inspector"></el-input>
       </el-form-item>
       <el-form-item label="单位">
         <el-input v-model="Inspector4.iUnit"></el-input>
@@ -45,7 +45,7 @@
         <el-input v-model="Inspector4.from"></el-input>
       </el-form-item>
       <el-form-item label="提取对象">
-        <el-input v-model="Inspector4.from"></el-input>
+        <el-input v-model="Inspector4.target"></el-input>
       </el-form-item>
       <br>
 
@@ -61,7 +61,7 @@
                   :rows="3"
                   placeholder="" v-model="Inspector4.way"></el-input>
       </el-form-item><br>
-      <el-form-item label="检查结果">
+      <el-form-item label="备注">
         <el-input type="textarea"
                   :rows="3"
                   placeholder="（注明不能扣押原始存储介质的原因等情况）" v-model="Inspector4.more"></el-input>
@@ -99,6 +99,7 @@ export default {
         place:'',
         commander:'',
         cUnit:'',
+        Inspector:'',
         iUnit:'',
         from:'',
         Target:'',
