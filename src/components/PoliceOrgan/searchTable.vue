@@ -40,7 +40,7 @@ import CInspector6 from "./checks/cInspector6.vue";
 import CInspector7 from "./checks/cInspector7.vue";
 import CheckBtn from "./checks/checkBtn.vue";
 import axios from "axios";
-import {formatDateTime, mergeForm, mergeTable} from "../../../static/utils/utilities";
+import {formatDateTime2, mergeForm, mergeTable} from "../../../static/utils/utilities";
 
 export default {
   name:'searchTable',
@@ -170,7 +170,7 @@ export default {
       else
           content = mergeForm(this.cInspector_form)
       console.log("content"+content)
-      let checkTime = formatDateTime(new Date())
+      let checkTime = formatDateTime2(new Date())
       let checkResult = '同意'
       let checker = localStorage.getItem('name')
       this.$confirm('确定同意么?', '提示', {
@@ -216,7 +216,7 @@ export default {
       else
         content = mergeForm(this.cInspector_form)
       console.log("content"+content)
-      let checkTime = formatDateTime(new Date())
+      let checkTime = formatDateTime2(new Date())
       let checkResult = '不同意'
       let checker = localStorage.getItem('name')
       this.$confirm('确定不同意么?', '提示', {

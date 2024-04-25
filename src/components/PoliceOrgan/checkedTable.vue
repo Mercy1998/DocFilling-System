@@ -1,16 +1,16 @@
 <template>
   <div id="checkedTable">
-    <el-table :data="tableData" border style="width: 90%;margin: 0 auto;">
+    <el-table :data="tableData" border style="width: 92%;margin: 0 auto;">
       <el-table-column prop="id" label="编号" width="80"></el-table-column>
-      <el-table-column prop="title" label="文书名称" width="180"></el-table-column>
-      <el-table-column prop="provider" label="提交人" width="150"></el-table-column>
+      <el-table-column prop="title" label="文书名称" width="190"></el-table-column>
+      <el-table-column prop="provider" label="提交人" width="130"></el-table-column>
       <el-table-column prop="date" label="提交时间" width="160"></el-table-column>
       <el-table-column prop="checkResult" label="审批结果" width="120"></el-table-column>
-      <el-table-column prop="checkTime" label="审批时间" width="120"></el-table-column>
+      <el-table-column prop="checkTime" label="审批时间" width="160"></el-table-column>
       <el-table-column prop="checker" label="审批人" width="120"></el-table-column>
-      <el-table-column  label="操作" width="120">
+      <el-table-column  label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+          <el-button @click="handleClick(scope.row)" type="text" >查看</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -67,44 +67,75 @@ export default {
         provider:row.provider,
         title:row.title
       }
-      axios.get('http://localhost:3000/api/user/getContent',{
-        params
-      }).then( (res)=> {
-        console.log("data:" + res.data)
-        let form={}
-        let objStr = res.data
-        console.log("objStr"+objStr)
-        let arr1 = objStr.split('|')
-        console.log(arr1)
-        for (let i = 0; i < arr1.length - 1; i++) {
-          let arr2 = arr1[i].split(':')
-          console.log(arr2)
-          let key = arr2[0]
-          form[key] = arr2[1]
 
-        }
-        this.cInspector_form = form
-        console.log("this.cInspector_form" + JSON.stringify(this.cInspector_form))
-      })
       // 判断抽屉内容
-      if(row.title === '扣押清单')
+      if(row.title === '扣押清单'){
+        //表格数据
+        axios.get('http://localhost:3000/api/user/getContent',{
+          params
+        }).then( (res)=> {
+          console.log("data:" + res.data)
+          let table = []
+          let objStr = res.data
+          console.log("objStr"+objStr)
+          let arr1 = objStr.split('|')
+          console.log(arr1)
+
+          for(let i=0;i<arr1.length-1;i+=6){
+            let newRow = {
+              ID:arr1[i],
+              name: arr1[i+1],
+              quantity: arr1[i+2],
+              feature: arr1[i+3],
+              from: arr1[i+4],
+              remark: arr1[i+5],
+            };
+            table.push(newRow)
+          }
+          this.cInspector_table = table
+          console.log("this.cInspector_table"+JSON.stringify(this.cInspector_table))
+        })
+
         this.flag =1
-      else if(row.title === '电子数据检查笔录') {
-        this.flag = 2
       }
-      else if(row.title === '侦查实验笔录')
-        this.flag =3
-      else if(row.title === '网络在线提取笔录')
-        this.flag =4
-      else if(row.title === '现场提取笔录'){
-        this.flag =5
+      else{
+        axios.get('http://localhost:3000/api/user/getContent',{
+          params
+        }).then( (res)=> {
+          console.log("data:" + res.data)
+          let form={}
+          let objStr = res.data
+          console.log("objStr"+objStr)
+          let arr1 = objStr.split('|')
+          console.log(arr1)
+          for (let i = 0; i < arr1.length - 1; i++) {
+            let arr2 = arr1[i].split(':')
+            console.log(arr2)
+            let key = arr2[0]
+            form[key] = arr2[1]
+
+          }
+          this.cInspector_form = form
+          console.log("this.cInspector_form" + JSON.stringify(this.cInspector_form))
+        })
+        if(row.title === '电子数据检查笔录') {
+          this.flag = 2
+        }
+        else if(row.title === '侦查实验笔录')
+          this.flag =3
+        else if(row.title === '网络在线提取笔录')
+          this.flag =4
+        else if(row.title === '现场提取笔录'){
+          this.flag =5
+        }
+        else if(row.title === '远程勘验笔录')
+          this.flag =6
+        else if(row.title === '电子数据提取固定清单')
+          this.flag =7
+        else
+          this.flag=0
       }
-      else if(row.title === '远程勘验笔录')
-        this.flag =6
-      else if(row.title === '电子数据提取固定清单')
-        this.flag =7
-      else
-        this.flag=0
+
     },
     handleClose(done){
       this.$confirm('确认关闭？')

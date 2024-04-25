@@ -116,10 +116,13 @@ router.get('/getSearchTable',(req,res)=>{
       for (let i =0;i<result.length;i++){
         let arr = []
         arr.push(result[i].title)
+        arr.push(result[i].content)
         arr.push(result[i].isCheck)
         arr.push(result[i].date)
         arr.push(result[i].provider)
         arr.push(result[i].id)
+        arr.push(result[i].checktime)
+        arr.push(result[i].checker)
         dataList.push(arr)
       }
       console.log(dataList)
