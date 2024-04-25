@@ -193,7 +193,17 @@ export default {
           totalStr += obj[key] + '|'
         }
       }
-      axios.post("http://localhost:3000/api/user/save", {
+      //弹框
+      this.$confirm('确定保存么?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '保存成功!'
+        });
+        axios.post("http://localhost:3000/api/user/save", {
             params: {
               title: this.docTitle,
               content: totalStr,
@@ -201,14 +211,21 @@ export default {
               provider:this.username
             }
           }
-      ).then(function (res) {
-        console.log("saveData:" + res)
-        if (res.data.status == 200) {
-          console.log(res.data.msg)
-        }
-      }).catch(function (err) {
-        console.log(err)
-      })
+        ).then(function (res) {
+          console.log("saveData:" + res)
+          if (res.data.status == 200) {
+            console.log(res.data.msg)
+          }
+        }).catch(function (err) {
+          console.log(err)
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        });
+      });
+
     }
   }
 }

@@ -134,7 +134,7 @@ router.get('/getChecked',(req,res)=>{
   let dataList = []
   const params = req.query;
   console.log("params" + params)
-  let sqlStr ="select * from docs where isCheck='是'";
+  let sqlStr ="select * from docs where isCheck<>'否'";
   conn.query(sqlStr,function (err,result){
     if (err) {
       return console.log("查询失败" + err.message)
@@ -149,6 +149,8 @@ router.get('/getChecked',(req,res)=>{
         arr.push(result[i].date)
         arr.push(result[i].provider)
         arr.push(result[i].id)
+        arr.push(result[i].checktime)
+        arr.push(result[i].checker)
         dataList.push(arr)
       }
       console.log(dataList)
@@ -187,8 +189,29 @@ router.get('/getNotChecked',(req,res)=>{
 //修改审批状态
 router.post('/changeChecked',(req,res)=>{
   //update
-
+  let sqlStr = "update docs set checktime = ? ,isCheck = ?, checker = ? where content = ?"
+  const params = req.body["params"];
+  console.log(params)
+  //参数
+  const checktime=params.checkTime
+  const isCheck=params.checkResult
+  const checker = params.checker
+  const content = params.content
+  console.log(checktime)
+  console.log(isCheck)
+  console.log(checker)
+  console.log(content)
+  conn.query(sqlStr,[checktime,isCheck,checker,content],function (err,result){
+    if(err) {
+      return console.log("修改数据失败"+err.message)
+    }
+    res.send({
+      status:200,
+      msg:"修改状态等数据成功！"
+    })
+  })
 })
+
 //获得内容
 router.get('/getContent',(req,res)=> {
   let dataObj = {}

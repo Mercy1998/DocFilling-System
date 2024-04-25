@@ -1,9 +1,9 @@
-<!--未审批-->
-<!--未审批-->
+<!--已审批-->
+
 <template>
   <div id="check2">
     <my-header1 doc-title="已审批文书"></my-header1>
-    <search-table :table-data="check3.hasChecked"></search-table>
+    <checked-table :table-data="check3.hasChecked"></checked-table>
   </div>
 </template>
 
@@ -11,12 +11,12 @@
 
 import {defineComponent} from "vue";
 import MyHeader1 from "../../components/container/my-header1.vue";
-import SearchTable from "../../components/PoliceOrgan/searchTable.vue";
+import CheckedTable from "../../components/PoliceOrgan/checkedTable.vue";
 import axios from "axios";
 
 export default ({
   name:'check3',
-  components: {SearchTable, MyHeader1},
+  components: {CheckedTable, MyHeader1},
   mounted() {
     this.showHasChecked()
   },
@@ -42,7 +42,10 @@ export default ({
             title:dataList[0],
             provider:dataList[4],
             date:dataList[3],
-            check:dataList[2]
+            checkResult:dataList[2],
+            checkTime:dataList[6],
+            checker:dataList[7]
+
           }
           console.log(newRow)
           that.hasChecked.push(newRow)

@@ -108,7 +108,24 @@ export default {
       export2Word("侦察人员/现场提取笔录","现场提取笔录",that)
     },
     save(){
-      save2DB(this.docTitle,this.Inspector5,this.username)
+      this.Inspector5.rowDate1 = formatDateTime(new Date(this.Inspector5.rowDate1))
+      this.Inspector5.rowDate2 = formatDateTime(new Date(this.Inspector5.rowDate2))
+      this.$confirm('确定保存么?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '保存成功!'
+        });
+        save2DB(this.docTitle,this.Inspector5,this.username)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        });
+      });
     }
   }
 }

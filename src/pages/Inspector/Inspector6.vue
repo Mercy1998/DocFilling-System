@@ -114,7 +114,25 @@ export default {
       export2Word("侦察人员/远程勘验笔录","远程勘验笔录",that)
     },
     save(){
-      save2DB(this.docTitle,this.Inspector6,this.username)
+      this.Inspector6.rowDate = formatDateTime(new Date(this.Inspector6.rowDate))
+      this.Inspector6.rowDate2 = formatDateTime(new Date(this.Inspector6.rowDate2))
+      this.Inspector6.rowDate3 = formatDateTime(new Date(this.Inspector6.rowDate3))
+      this.$confirm('确定保存么?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '保存成功!'
+        });
+        save2DB(this.docTitle,this.Inspector6,this.username)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        });
+      });
     }
   }
 }

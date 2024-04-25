@@ -126,7 +126,25 @@ export default {
       export2Word("侦察人员/网络在线提取笔录","网络在线提取笔录",that)
     },
     save(){
-      save2DB(this.docTitle,this.Inspector4,this.username)
+      this.Inspector4.rowDate = formatDateTime(new Date(this.Inspector4.rowDate))
+      this.Inspector4.rowDate2 = formatDateTime(new Date(this.Inspector4.rowDate2))
+      this.Inspector4.rowDate3 = formatDateTime(new Date(this.Inspector4.rowDate3))
+      this.$confirm('确定保存么?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '保存成功!'
+        });
+        save2DB(this.docTitle,this.Inspector4,this.username)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        });
+      });
     }
 
   }
