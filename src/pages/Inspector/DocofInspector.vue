@@ -7,7 +7,7 @@
 
       <el-container>
         <el-aside width="200px">
-          <el-menu @select="changeSidebar" :unique-opened="true" :router="true">
+          <el-menu @select="changeSidebar" :unique-opened="true" :router="true" :default-active="$route.path">
             <!--            -->
             <el-submenu index="1">
               <template slot="title"><i class="el-icon-s-home"></i>现场提取</template>
@@ -84,11 +84,13 @@ export default {
   },
   data() {
     return {
-      username:''
+      username:'',
+
     }
   },
   mounted() {
     this.username = sessionStorage.getItem('name')
+    this.$route.path='/Inspector5'
     console.log(this.username)
   },
   methods: {

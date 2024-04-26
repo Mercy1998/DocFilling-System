@@ -83,11 +83,13 @@ export default({
               }
               ]
             },
-        //   角色
-            identities:[{
-              value: '民警',
-              label: '民警'
-            }, {
+          // 角色
+            identities:[
+                // {
+        //       value: '民警',
+        //       label: '民警'
+        //     },
+               {
               value: '侦察人员',
               label: '侦查人员'
             }, {
@@ -118,11 +120,11 @@ export default({
                         console.log(res);
                         if(res.data.state == 1){
                             if(loginType === '公安机关'){
-                                this.$router.replace({path:"/DocofPoliceOrgan"});
+                                this.$router.replace({path:"/check1"});
                             }else if(loginType === '民警'){
                                 this.$router.replace({path:"/DocofPolice"});
                             }else if (loginType === '侦察人员'){
-                              this.$router.replace({path:"/DocofInspector"});
+                              this.$router.replace({path:"/Inspector5"});
                             }
 
 

@@ -7,7 +7,7 @@
 
       <el-container>
         <el-aside width="200px">
-          <el-menu @select="changeSidebar" :unique-opened="true" :router="true">
+          <el-menu @select="changeSidebar" :unique-opened="true" :router="true" :default-active="$route.path">
             <!--            -->
             <el-submenu index="1">
               <template slot="title"><i class="el-icon-s-data"></i>统计</template>
@@ -59,7 +59,8 @@ export default {
       role:'公安机关'
     }
   },
-  created() {
+  mounted() {
+    this.$route.path="/check1"
   },
   methods: {
     changeSidebar(path) {
