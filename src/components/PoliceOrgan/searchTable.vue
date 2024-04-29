@@ -44,6 +44,8 @@ import {formatDateTime2, mergeForm, mergeTable} from "../../../static/utils/util
 
 export default {
   name:'searchTable',
+  // 审批后刷新
+  inject:['reload'],
   components: {
     CheckBtn,
     CInspector3,
@@ -67,7 +69,8 @@ export default {
       cInspector_form:{
       },
       cInspector_table:[] ,
-      docTitle:''
+      docTitle:'',
+
     }
   },
   methods:{
@@ -200,6 +203,7 @@ export default {
         this.drawerVisible=false
         this.cInspector_table = []
         this.cInspector_form ={}
+        this.reload()
       }).catch(() => {
         this.$message({
           type: 'info',
@@ -246,6 +250,7 @@ export default {
         this.drawerVisible=false
         this.cInspector_table = []
         this.cInspector_form ={}
+        this.reload()
       }).catch(() => {
         this.$message({
           type: 'info',
