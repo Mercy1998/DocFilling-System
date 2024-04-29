@@ -26,7 +26,6 @@
     </div>
 </template>
 
-
 <script>
 import axios from 'axios';
 export default({
@@ -65,13 +64,13 @@ export default({
                 identity: ''
             },
             rules:{
-            name: [
+              name: [
             {
                 validator: validateAccount,
                 trigger: "blur",
             },
             ],
-            pwd: [
+              pwd: [
             {
                 validator: validatePassword,
                 trigger: "blur",
@@ -80,26 +79,22 @@ export default({
               identity:[{
                 validator: validateIdentity,
                 trigger:"blur"
-              }
-              ]
+              }]
             },
           // 角色
             identities:[
-                // {
-        //       value: '民警',
-        //       label: '民警'
-        //     },
-               {
+              {
               value: '侦察人员',
               label: '侦查人员'
-            }, {
+            },
+              {
               value: '公安机关',
               label: '公安机关'
             }]
         }
     },
     methods: {
-        submitForm(formName)
+      submitForm(formName)
         {
             this.$refs[formName].validate((valid) =>
             {
@@ -126,8 +121,6 @@ export default({
                             }else if (loginType === '侦察人员'){
                               this.$router.replace({path:"/Inspector5"});
                             }
-
-
 
                             this.$message({
                                 message:loginType+"："+loginName+" 登陆成功",
